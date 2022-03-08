@@ -1,0 +1,76 @@
+.menu-item {
+  padding: 20px;
+  font-size: 1.3em;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+.menu-item > a {
+  color: #e9e9e9;
+}
+.menu-item > a:hover {
+  color: white;
+}
+
+.user_photo {
+  width: 200px;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+root {
+    --admin-bg-color: #ddd;
+}
+
+html {
+    background-color: #e7e7e7 !important;
+}
+
+.form-footer {
+    display: flex;
+}
+.form-block {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10vh;
+}
+
+#avatar-upload {
+    margin-bottom: 0.75rem;
+}
+
+.navbar-item img {
+    width: 7vh !important;
+    height: 7vh !important;
+    max-height: 7vh !important;
+}
+
+.nav-avatar {
+    border-radius: 50%;
+}
+
+.main-content {
+    margin-top: 30px;
+}
+
+.badge-preview {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+}
+
+.badge-preview > img{
+    border: #363636 solid 2px;
+    border-radius: 10px !important;
+}
+
+.left-menu {
+    height: 100vh;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.left-menu > .menu-items {
+    position: fixed;
+}
+
