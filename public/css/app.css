@@ -1,3 +1,35 @@
+.margin-10 {
+  margin: 10px;
+}
+
+.margin-5 {
+  margin: 5px;
+}
+
+.margin-15 {
+  margin: 15px;
+}
+
+.margin-20 {
+  margin: 20px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
 .menu-item {
   padding: 20px;
   font-size: 1.3em;
@@ -15,6 +47,10 @@
   width: 200px;
   margin-left: 20px;
   border-radius: 10px;
+}
+
+.col-block {
+  padding-right: 10%;
 }
 root {
     --admin-bg-color: #ddd;

@@ -4,20 +4,25 @@
     <div class="columns">
         @include("layouts.grid")
         <div class="column is-10">
-            {{ print_r($userInfo) }}
-            <div class="card">
+            <div class="card margin-top-15">
                 <div class="content">
                     <div class="columns">
-                        <div class="column">
+                        <div class="column is-4">
                             <img class="user_photo" src="{{ asset("storage/pictures/".$userInfo["id"]."/avatar/".$userInfo["photo_path"]) }}" alt="">
                         </div>
-                        <div class="column">
+                        <div class="column is-8">
                             <div class="col-block">
-                                <div class="light-text">
-                                    {{ __("Name") }}
+                                <div class="field">
+                                    <label class="label">{{ __("Name") }}</label>
+                                    <div class="control">
+                                        <input class="input" disabled type="text" value="{{ $userInfo["name"] }}" placeholder="Text input">
+                                    </div>
                                 </div>
-                                <div class="main-text">
-                                    {{ $userInfo["name"] }}
+                                <div class="field">
+                                    <label class="label">{{ __("Surname") }}</label>
+                                    <div class="control">
+                                        <input class="input" disabled type="text" value="{{ $userInfo["surname"] }}" placeholder="Text input">
+                                    </div>
                                 </div>
                             </div>
                         </div>
