@@ -24,6 +24,7 @@
                                         <input class="input" disabled type="text" value="{{ $userInfo["surname"] }}" placeholder="Text input">
                                     </div>
                                 </div>
+                                {{--TODO: add fileds with position, birthday, and more--}}
                             </div>
                         </div>
                     </div>
