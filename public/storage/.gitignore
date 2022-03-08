@@ -1,4 +1,5 @@
 *
 !.gitignore
 !badge_template.png
-!fonts/
+!/fonts/*
+!/companies/*
