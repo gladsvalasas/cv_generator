@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'invite' => ['required', 'string', 'max:255'],
             'dateBirth' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            "phone_number"=>['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'photo_path'=>['required'],
             "company"=>["required", "integer"]
@@ -97,6 +98,7 @@ class RegisterController extends Controller
             'position' => $data['position'],
             'birthday' => $data['dateBirth'],
             'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
             'password' => Hash::make($data['password']),
             "company_id" => $data["company"]
 
