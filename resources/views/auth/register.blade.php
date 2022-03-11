@@ -109,6 +109,19 @@
                 </div>
 
                 <div class="field">
+                    <label class="phone_number">{{ __('Phone Number') }}</label>
+                    <div class="control">
+                        <input id="phone_number" type="tel" class="input @error('phone_number') is-danger @enderror" name="phone_number"
+                               value="{{ old('phone_number') }}" required autocomplete="phone_number" autofocus>
+                    </div>
+                    @error('phone_number')
+                    <span class="help is-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="field">
                     <label class="password">{{ __('Password') }}</label>
                     <div class="control">
                         <input id="password" type="password" class="input @error('password') is-danger @enderror"
