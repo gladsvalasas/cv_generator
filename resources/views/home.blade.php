@@ -3,7 +3,7 @@
 @section('content')
     <div class="columns">
         @include("layouts.grid")
-        <div class="column is-10">
+        <div class="column is-10 main-column">
             <div class="card margin-top-15">
                 <div class="content">
                     <form action="{{ route("profile.edit") }}" method="POST" enctype="multipart/form-data" name="editProfile">
@@ -13,13 +13,13 @@
                                 <img class="user_photo lozad"
                                      data-src="{{ asset("storage/pictures/".$userInfo["id"]."/avatar/".$userInfo["photo_path"]) }}"
                                      alt="">
-                                {{--<div class="field margin-left-20">
+                                <div class="field margin-left-20">
                                     <label class="label">{{ __("Avatar") }}</label>
                                     <div class="control">
                                         <div id="avatar-upload" class="file has-name">
                                             <label class="file-label">
                                                 <input class="file-input" disabled type="file" accept="image/*" id="photo_path"
-                                                       name="photo_path" required>
+                                                       name="photo_path">
                                                 <span class="file-cta">
                                                   <span class="file-icon">
                                                     <i class="fas fa-upload"></i>
@@ -39,7 +39,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>--}}
+                                </div>
                             </div>
                             <div class="column is-8">
                                 <div class="col-block">
@@ -112,11 +112,42 @@
                             </div>
                         </div>
                         <hr>
+                        <div class="columns margin-left-20 margin-right-20">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label">{{ __('Email Address') }}</label>
+                                    <div class="control">
+                                        <input id="email" type="email" class="input @error('email') is-danger @enderror" name="email"
+                                               value="{{ $userInfo["email"] }}" required disabled autocomplete="email" autofocus>
+                                    </div>
+                                    @error('email')
+                                    <span class="help is-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label">{{ __('Phone Number') }}</label>
+                                    <div class="control">
+                                        <input id="phone_number" type="tel" class="input @error('phone_number') is-danger @enderror" name="phone_number"
+                                               value="{{ $userInfo["phone_number"] }}" required disabled autocomplete="phone_number" autofocus>
+                                    </div>
+                                    @error('phone_number')
+                                    <span class="help is-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="columns">
                             <div class="column margin-left-20 margin-right-20">
                                 <h4>{{ __("About") }}</h4>
                                 <div class="about-field">
-                                    <textarea class="textarea @error('about') is-danger @enderror" name="about" id="about" placeholder="">{{ $userInfo["about"] }}</textarea>
+                                    <textarea disabled class="textarea @error('about') is-danger @enderror" name="about" id="about" placeholder="">{{ $userInfo["about"] }}</textarea>
                                     @error('about')
                                     <span class="help is-danger" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -128,8 +159,8 @@
                         <hr>
                         <div class="columns">
                             <div class="column margin-left-20 margin-right-20">
-                                <input type="submit" disabled class="button is-dark" value="{{ __("Save") }}"/>
-                                <button >{{ __("Edit") }}</button>
+                                <input type="submit" name="submitEdit" disabled class="button is-dark" value="{{ __("Save") }}"/>
+                                <button type="button" id="openEdit" class="button is-light" data-active="false">{{ __("Edit") }}</button>
                             </div>
                         </div>
                     </form>
