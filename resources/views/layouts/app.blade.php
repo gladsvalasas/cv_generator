@@ -71,7 +71,7 @@
                                 @endif
                             @else
                                 <div class="navbar-item has-dropdown is-hoverable">
-                                    <img src="{{ asset("storage/pictures/".Auth::user()->id."/avatar/".Auth::user()->photo_path) }}" class="nav-avatar" alt="">
+                                    <img data-src="{{ asset("storage/pictures/".Auth::user()->id."/avatar/".Auth::user()->photo_path) }}" class="nav-avatar lozad" alt="">
                                     <a class="navbar-link">
                                         {{ Auth::user()->name }}
                                     </a>

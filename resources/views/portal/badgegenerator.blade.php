@@ -6,7 +6,7 @@
         <div class="column is-10">
             <div class="card">
                 <div class="card-image badge-preview">
-                    <img src="{{ asset($badgeUrl) }}" alt="">
+                    <img class="lozad" data-src="{{ asset($badgeUrl) }}" alt="">
                 </div>
                 <div class="content badge-preview">
                     <a href="{{ asset($badgeUrl) }}" download class="button is-dark">

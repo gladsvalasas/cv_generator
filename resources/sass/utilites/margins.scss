@@ -1,0 +1,49 @@
+$baseMargin: 10px;
+
+.margin-10 {
+    margin: $baseMargin;
+}
+
+.margin-5 {
+    margin: $baseMargin/2;
+}
+
+.margin-15 {
+    margin: $baseMargin+5;
+}
+
+.margin-20 {
+    margin: $baseMargin*2;
+}
+
+.margin-top-10 {
+    margin-top: $baseMargin;
+}
+
+.margin-top-5 {
+    margin-top: $baseMargin/2;
+}
+
+.margin-top-15 {
+    margin-top: $baseMargin+5;
+}
+
+.margin-top-20 {
+    margin-top: $baseMargin*2;
+}
+
+.margin-left-10 {
+    margin-left: $baseMargin;
+}
+
+.margin-right-10 {
+    margin-right: $baseMargin;
+}
+
+.margin-left-20 {
+    margin-left: $baseMargin*2;
+}
+
+.margin-right-20 {
+    margin-right: $baseMargin*2;
+}
