@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Companies;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Classes\FileUtilites;
+use App\Classes\ImageUtilites;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,9 +90,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        DB::table("invites")
-            ->where("code", "=", $data["invite"])
-            ->update(["isActive"=> 0]);
 
         $user = User::create([
             'name' => $data['name'],
@@ -107,17 +106,19 @@ class RegisterController extends Controller
         $avatar = \request()->file("photo_path")->getClientOriginalName();
         \request()->file("photo_path")->storeAs("public/pictures", $user->id."/avatar/".$fileTempPrefix."_".$avatar, "");
 
-        $mainImage = Image::make(Storage::path("public/pictures")."/".$user->id."/avatar/".$fileTempPrefix."_".$avatar);
-        $badgeImage = $mainImage;
-        $mainImage->widen(700);
-        $mainImage->save();
-        if (!File::isDirectory(Storage::path("public/pictures")."/".$user->id."/badges/")) {
-            File::makeDirectory(Storage::path("public/pictures")."/".$user->id."/badges/");
-        }
-        $badgeImage->resize(1000, 1000);
-        $badgeImage->save(Storage::path("public/pictures")."/".$user->id."/badges/".$fileTempPrefix."_".$avatar);
+        $mainPath = Storage::path("public/pictures")."/".$user->id."/avatar/";
+        $subPath = Storage::path("public/pictures")."/".$user->id."/badges/";
 
-        $user->update(["photo_path"=>$fileTempPrefix."_".$avatar]);
+        $fileName = $fileTempPrefix."_".$avatar;
+
+        FileUtilites::createDirIfNotExist($subPath);
+        ImageUtilites::createAvatars(["main"=>$mainPath, "sub"=>$subPath], $fileName);
+
+        $user->update(["photo_path"=>$fileName]);
+
+        DB::table("invites")
+            ->where("code", "=", $data["invite"])
+            ->update(["isActive"=> 0]);
 
         return $user;
     }

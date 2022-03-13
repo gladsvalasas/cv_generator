@@ -83,6 +83,10 @@
 .name_block .logo_company img {
   width: 200px;
 }
+
+.main-column {
+  padding-bottom: 30vh;
+}
 root {
     --admin-bg-color: #ddd;
 }
