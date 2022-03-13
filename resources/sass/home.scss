@@ -2,7 +2,26 @@
     width: 200px;
     margin-left: 20px;
     border-radius: 10px;
+    /*display: block;
+    margin: 0 auto;*/
 }
 .col-block {
     padding-right: 10%;
+}
+
+.name_block {
+    display: flex;
+    justify-content: flex-start;
+
+    .name_company {
+        margin-left: 10%;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+
+    .logo_company {
+        img {
+            width: 200px;
+        }
+    }
 }

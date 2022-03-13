@@ -6,28 +6,133 @@
         <div class="column is-10">
             <div class="card margin-top-15">
                 <div class="content">
-                    <div class="columns">
-                        <div class="column is-4">
-                            <img class="user_photo" src="{{ asset("storage/pictures/".$userInfo["id"]."/avatar/".$userInfo["photo_path"]) }}" alt="">
-                        </div>
-                        <div class="column is-8">
-                            <div class="col-block">
-                                <div class="field">
-                                    <label class="label">{{ __("Name") }}</label>
+                    <form action="{{ route("profile.edit") }}" method="POST" enctype="multipart/form-data" name="editProfile">
+                        @csrf
+                        <div class="columns">
+                            <div class="column is-4">
+                                <img class="user_photo lozad"
+                                     data-src="{{ asset("storage/pictures/".$userInfo["id"]."/avatar/".$userInfo["photo_path"]) }}"
+                                     alt="">
+                                {{--<div class="field margin-left-20">
+                                    <label class="label">{{ __("Avatar") }}</label>
                                     <div class="control">
-                                        <input class="input" disabled type="text" value="{{ $userInfo["name"] }}" placeholder="Text input">
+                                        <div id="avatar-upload" class="file has-name">
+                                            <label class="file-label">
+                                                <input class="file-input" disabled type="file" accept="image/*" id="photo_path"
+                                                       name="photo_path" required>
+                                                <span class="file-cta">
+                                                  <span class="file-icon">
+                                                    <i class="fas fa-upload"></i>
+                                                  </span>
+                                                  <span class="file-label">
+                                                    {{ __("File") }}
+                                                  </span>
+                                                </span>
+                                                <span class="file-name">
+                                                  {{ __("No file uploaded") }}
+                                                </span>
+                                            </label>
+                                            @error('photo_path')
+                                            <span class="help is-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">{{ __("Surname") }}</label>
-                                    <div class="control">
-                                        <input class="input" disabled type="text" value="{{ $userInfo["surname"] }}" placeholder="Text input">
+                                </div>--}}
+                            </div>
+                            <div class="column is-8">
+                                <div class="col-block">
+                                    <div class="field">
+                                        <label class="label">{{ __("Name") }}</label>
+                                        <div class="control">
+                                            <input class="input @error('name') is-danger @enderror" name="name" id="name" disabled type="text" value="{{ $userInfo["name"] }}"
+                                                   placeholder="Text input" required>
+                                        </div>
+                                        @error('name')
+                                        <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
+                                    <div class="field">
+                                        <label class="label">{{ __("Surname") }}</label>
+                                        <div class="control">
+                                            <input class="input @error('surname') is-danger @enderror" name="surname" id="surname" disabled type="text" value="{{ $userInfo["surname"] }}"
+                                                   placeholder="Text input" required>
+                                        </div>
+                                        @error('surname')
+                                        <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">{{ __("Date of birthday") }}</label>
+                                        <div class="control">
+                                            <input class="input @error('birthday') is-danger @enderror" name="birthday" id="birthday" disabled type="date" value="{{ $userInfo["birthday"] }}"
+                                                   placeholder="Text input" required>
+                                        </div>
+                                        @error('birthday')
+                                        <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    {{--TODO: add fileds with position, birthday, and more--}}
                                 </div>
-                                {{--TODO: add fileds with position, birthday, and more--}}
                             </div>
                         </div>
-                    </div>
+                        <hr> {{--интересно, сейчас кто-то так ещё делает?--}}
+                        <div class="columns">
+                            <div class="column margin-left-20 margin-right-20">
+                                <h4>{{ __("Company") }}</h4>
+                                <div class="name_block">
+                                    <div class="logo_company">
+                                        <img class="lozad" data-src="{{ asset("storage/companies/".$userInfo["company"]["id"]."/".$userInfo["company"]["logo_path"]) }}" alt="">
+                                    </div>
+                                    <div class="name_company">
+                                        {{ $userInfo["company"]["fullname"] }}
+                                    </div>
+                                </div>
+                                <div class="position_block">
+                                    <div class="field">
+                                        <label class="label">{{ __("Position") }}</label>
+                                        <div class="control">
+                                            <input class="input @error('position') is-danger @enderror" name="position" id="position" disabled type="text" value="{{ $userInfo["position"] }}"
+                                                   placeholder="Text input" required>
+                                        </div>
+                                        @error('position')
+                                        <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="columns">
+                            <div class="column margin-left-20 margin-right-20">
+                                <h4>{{ __("About") }}</h4>
+                                <div class="about-field">
+                                    <textarea class="textarea @error('about') is-danger @enderror" name="about" id="about" placeholder="">{{ $userInfo["about"] }}</textarea>
+                                    @error('about')
+                                    <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="columns">
+                            <div class="column margin-left-20 margin-right-20">
+                                <input type="submit" disabled class="button is-dark" value="{{ __("Save") }}"/>
+                                <button >{{ __("Edit") }}</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
