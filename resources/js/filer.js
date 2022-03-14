@@ -12,7 +12,7 @@ const codeTest = document.querySelector("#invite");
 const company_id = document.querySelector("#company");
 
 if (codeTest !== null && company_id !== null ) {
-    codeTest.onkeypress = () => {
+    codeTest.onkeyup = () => {
         if (codeTest.value.length < 6) return;
         axios.get("/api/invites/checkInvite?code=" + codeTest.value + "&company_id=" + company_id.value)
             .then((response) => {
