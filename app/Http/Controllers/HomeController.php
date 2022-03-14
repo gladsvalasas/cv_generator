@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\FileUtilites;
 use App\Classes\ImageUtilites;
+use App\Models\Countries;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,19 +32,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $countries = Http::get("https://restcountries.com/v3.1/all")
-            ->json();
+        $countries = Countries::all();
         $countriesList = [];
 
         $userInfo = User::getUser(Auth::id());
 
         foreach ($countries as $country) {
             $countriesList[] = [
-                "name"=>$country["name"]["common"],
-                "userSelected"=> $userInfo["country"] === $country["name"]["common"]
+                "name"=>$country["name"],
+                "userSelected"=> $userInfo["country"] === $country["name"]
             ];
         }
-        array_multisort($countriesList);
 
         return view('home', ["userInfo"=>$userInfo, "countries"=>$countriesList]);
     }
