@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Languages;
+use App\Models\LanguagesUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LanguagesController extends Controller
 {
@@ -14,7 +17,11 @@ class LanguagesController extends Controller
 
     public function index()
     {
-        return view("portal.languages");
+        $userLanguages = LanguagesUser::where("user_id", Auth::id())
+            ->join("languages", "languages.id", "=", "languages_users.languages_id")
+            ->join("language_levels", "language_levels.id", "=", "languages_users.language_level_id")
+            ->get(["languages_users.id", "languages_users.user_id", "languages.name", "language_levels.CEFR", "language_levels.cambridge"]);
+        return view("portal.languages", ["userLanguages"=>$userLanguages]);
     }
 
 }
