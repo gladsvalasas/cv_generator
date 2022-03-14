@@ -190,6 +190,20 @@
                         <hr>
                         <div class="columns">
                             <div class="column margin-left-20 margin-right-20">
+                                <h4>{{ __("Hobbies") }}</h4>
+                                <div class="about-field">
+                                    <textarea disabled class="textarea @error('hobbies') is-danger @enderror" name="hobbies" id="hobbies" placeholder="">{{ $userInfo["hobbies"] }}</textarea>
+                                    @error('hobbies')
+                                    <span class="help is-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="columns">
+                            <div class="column margin-left-20 margin-right-20">
                                 <input type="submit" name="submitEdit" disabled class="button is-dark" value="{{ __("Save") }}"/>
                                 <button type="button" id="openEdit" class="button is-light" data-active="false">{{ __("Edit") }}</button>
                             </div>

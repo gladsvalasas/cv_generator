@@ -57,6 +57,7 @@ class HomeController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             "phone_number"=>['required', 'string', 'max:255'],
             'about'=>['nullable', 'string'],
+            'hobbies'=>['nullable', 'string'],
             'country'=>['nullable', 'string'],
             'city'=>['nullable', 'string'],
         ]);
