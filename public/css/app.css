@@ -46,6 +46,10 @@
   margin-right: 20px;
 }
 
+.height-100-vh {
+  height: 100vh;
+}
+
 .menu-item {
   padding: 20px;
   font-size: 1.3em;
