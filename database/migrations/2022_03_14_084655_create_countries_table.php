@@ -17,6 +17,9 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("code");
+            $table->string("official_name");
+            $table->string("flag_url");
         });
 
         $countries = Http::get("https://restcountries.com/v3.1/all")
@@ -24,7 +27,12 @@ class CreateCountriesTable extends Migration
 
         $countriesList = [];
         foreach ($countries as $country) {
-            $countriesList[] = ["name"=>$country["name"]["common"]];
+            $countriesList[] = [
+                "name"=>$country["name"]["common"],
+                "code"=>$country["cca2"],
+                "official_name"=>$country["name"]["official"],
+                "flag_url"=>$country["flags"]["svg"]
+                ];
         }
         array_multisort($countriesList);
 
