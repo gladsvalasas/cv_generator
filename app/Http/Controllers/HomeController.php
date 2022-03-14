@@ -7,6 +7,7 @@ use App\Classes\ImageUtilites;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -30,7 +31,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ["userInfo"=>User::getUser(Auth::id())]);
+        $countries = Http::get("https://restcountries.com/v3.1/all")
+            ->json();
+        $countriesList = [];
+
+        $userInfo = User::getUser(Auth::id());
+
+        foreach ($countries as $country) {
+            $countriesList[] = [
+                "name"=>$country["name"]["common"],
+                "userSelected"=> $userInfo["country"] === $country["name"]["common"]
+            ];
+        }
+        array_multisort($countriesList);
+
+        return view('home', ["userInfo"=>$userInfo, "countries"=>$countriesList]);
     }
 
     public function edit(Request $request)
@@ -43,6 +58,8 @@ class HomeController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             "phone_number"=>['required', 'string', 'max:255'],
             'about'=>['nullable', 'string'],
+            'country'=>['nullable', 'string'],
+            'city'=>['nullable', 'string'],
         ]);
 
 

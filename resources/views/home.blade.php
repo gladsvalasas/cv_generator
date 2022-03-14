@@ -79,7 +79,6 @@
                                         </span>
                                         @enderror
                                     </div>
-                                    {{--TODO: add fileds with position, birthday, and more--}}
                                 </div>
                             </div>
                         </div>
@@ -135,6 +134,38 @@
                                                value="{{ $userInfo["phone_number"] }}" required disabled autocomplete="phone_number" autofocus>
                                     </div>
                                     @error('phone_number')
+                                    <span class="help is-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="columns margin-left-20 margin-right-20">
+                            <div class="column">
+                                <label class="label">{{ __("Country") }}</label>
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        <select id="country" name="country" disabled>
+                                            @foreach($countries as $country)
+                                                <option value="{{  $country["name"] }}" @if($country["userSelected"]) selected @endif>{{ $country["name"] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-globe"></i>
+                                     </span>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label">{{ __('City') }}</label>
+                                    <div class="control">
+                                        <input id="city" type="text" class="input @error('city') is-danger @enderror" name="city"
+                                               value="{{ $userInfo["city"] }}" disabled autocomplete="city" autofocus>
+                                    </div>
+                                    @error('city')
                                     <span class="help is-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

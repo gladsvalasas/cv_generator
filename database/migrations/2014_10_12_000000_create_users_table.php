@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->text('about')->nullable();
             $table->string("photo_path")->nullable();
+            $table->string("country")->nullable();
+            $table->string("city")->nullable();
             $table->integer("company_id")->default(0);
             $table->integer("permission_id")->default(1);
             $table->rememberToken();

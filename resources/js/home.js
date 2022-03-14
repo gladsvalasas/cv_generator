@@ -20,6 +20,7 @@ if (editButton !== null) {
         })
 
         document.querySelector("textarea[name=about]").disabled = isAct;
+        document.querySelector("select[name=country]").disabled = isAct;
         document.querySelector("input[type=submit]").disabled = isAct;
 
         let dis = "true";
