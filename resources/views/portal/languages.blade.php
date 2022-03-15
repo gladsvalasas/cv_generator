@@ -12,8 +12,8 @@
                             @foreach($userLanguages as $userLanguage)
                                 <div class="card margin-top-5 margin-bottom-5 padding-20 has-background-white-ter" id="language-panel-{{ $userLanguage->id }}">
                                     <div class="content">
-                                        <strong>{{ $userLanguage->name }}</strong>
-                                        {{ $userLanguage->CEFR }} ({{ $userLanguage->cambridge }})
+                                        <strong class="lang_name">{{ $userLanguage->name }}</strong>
+                                        <span class="lang_level">{{ $userLanguage->CEFR }} ({{ $userLanguage->cambridge }})</span>
                                         <span class="right">
                                             <button class="delete "></button>
                                             <button class="delete "></button>

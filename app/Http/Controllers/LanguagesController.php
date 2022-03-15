@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Crud;
 use App\Models\Languages;
 use App\Models\LanguagesUser;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LanguagesController extends Controller
 {
+    use ApiResponser;
     //
     function __construct()
     {
@@ -21,7 +24,13 @@ class LanguagesController extends Controller
             ->join("languages", "languages.id", "=", "languages_users.languages_id")
             ->join("language_levels", "language_levels.id", "=", "languages_users.language_level_id")
             ->get(["languages_users.id", "languages_users.user_id", "languages.name", "language_levels.CEFR", "language_levels.cambridge"]);
+
         return view("portal.languages", ["userLanguages"=>$userLanguages]);
+    }
+
+    public function delete(Request $request, $id)
+    {
+        return $this->success($id);
     }
 
 }

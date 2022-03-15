@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Languages extends Model
 {
     use HasFactory;
+
+    public function language(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(LanguagesUser::class);
+    }
 }
