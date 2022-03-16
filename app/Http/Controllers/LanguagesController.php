@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\AbstractVerifyModel;
 use App\Classes\Crud;
 use App\Models\Languages;
 use App\Models\LanguagesUser;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LanguagesController extends Controller
 {
-    use ApiResponser;
     //
     function __construct()
     {
@@ -26,11 +26,6 @@ class LanguagesController extends Controller
             ->get(["languages_users.id", "languages_users.user_id", "languages.name", "language_levels.CEFR", "language_levels.cambridge"]);
 
         return view("portal.languages", ["userLanguages"=>$userLanguages]);
-    }
-
-    public function delete(Request $request, $id)
-    {
-        return $this->success($id);
     }
 
 }

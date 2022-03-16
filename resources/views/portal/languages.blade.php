@@ -18,7 +18,6 @@
                                             <button class="delete "></button>
                                             <button class="delete "></button>
                                         </span>
-
                                     </div>
                                 </div>
                             @endforeach

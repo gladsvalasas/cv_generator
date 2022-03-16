@@ -13,9 +13,21 @@ class Crud
      * @param array $wheres
      * @return mixed
      */
+
+    private static function hasExist($class, $wheres)
+    {
+        $classWhere = $class::where($wheres);
+        return is_null($classWhere) ? false : $classWhere;
+    }
+
     public static function delete(Model $class, $wheres = [])
     {
-        return $class::where($wheres)->delete();
+        $get = self::hasExist($class, $wheres);
+        if ($get) {
+            return $get->delete();
+        }
+
+        return null;
     }
 
     /**
@@ -26,7 +38,11 @@ class Crud
      */
     public static function update(Model $class, $data, $wheres = [])
     {
-        return $class::where($wheres)->update($data);
+        $get = self::hasExist($class, $wheres);
+        if ($get) {
+            return $get->update($data);
+        }
+        return null;
     }
 
     /**
@@ -36,5 +52,20 @@ class Crud
      */
     public static function add(Model $model, $data) {
         return $model::create($data);
+    }
+
+    public static function get(Model $class, $wheres = [])
+    {
+        $get = self::hasExist($class, $wheres);
+        if ($get) {
+            return $get->get();
+        }
+
+        return null;
+    }
+
+    public static function getAll(Model $model)
+    {
+        return $model->all();
     }
 }

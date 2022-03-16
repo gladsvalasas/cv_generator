@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Interfaces\IVerificationModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LanguagesUser extends Model
+class LanguagesUser extends Model implements IVerificationModel
 {
     use HasFactory;
 
@@ -30,5 +31,13 @@ class LanguagesUser extends Model
     public function level(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(LanguageLevel::class);
+    }
+
+    static function getValidatorTemplate()
+    {
+        return [
+            "languages_id"=>["required", "integer"],
+            "language_level_id"=>["required", "integer"]
+        ];
     }
 }

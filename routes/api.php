@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function (){
-    Route::group(["prefix" => "languages"], function() {
-        Route::delete("/delete/{id}",  [\App\Http\Controllers\LanguagesController::class, "delete"]);
+    Route::group(["prefix" => "endpoint"], function() {
+        Route::get("/{method}/get/{id}", [\App\Http\Controllers\Api\EndpointsController::class, "get"]);
+        Route::get("/{method}/all", [\App\Http\Controllers\Api\EndpointsController::class, "getAll"]);
+        Route::post("/{method}/create/", [\App\Http\Controllers\Api\EndpointsController::class, "create"]);
+        Route::patch("/{method}/update/{id}", [\App\Http\Controllers\Api\EndpointsController::class, "update"]);
+        Route::delete("/{method}/delete/{id}",  [\App\Http\Controllers\Api\EndpointsController::class, "delete"]);
+
     });
 });
 
