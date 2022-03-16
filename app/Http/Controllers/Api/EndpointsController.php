@@ -16,6 +16,9 @@ class EndpointsController extends Controller implements IEndpoints
     use ApiResponser;
 
     protected string $modelsNamespace = '\App\Models\\';
+
+    private $model;
+
     protected static array $secureMethods = [
         "User",
     ];
@@ -35,45 +38,42 @@ class EndpointsController extends Controller implements IEndpoints
         return in_array($method, self::$secureMethods);
     }
 
-    public function get(Request $request, string $method, int $id)
+    private function execute(string $method, $function)
     {
         try {
             if (self::checkMethod($method)) return self::baseErrorNotFound();
 
             $modelName = $this->modelsNamespace.$method;
+            $this->model = new $modelName();
 
-            $get = Crud::get(new $modelName(), ["id"=>$id]);
-
-            return $this->success($get);
+            return $function();
         } catch (\Throwable  $ex) {
             return self::baseErrorNotFound();
         }
+    }
+
+    public function get(Request $request, string $method, int $id)
+    {
+        return $this->execute($method, function() use ($id) {
+            $get = Crud::get($this->model, ["id"=>$id]);
+
+            return $this->success($get);
+        });
     }
 
     public function getAll(Request $request, string $method)
     {
-        try {
-            if (self::checkMethod($method)) return self::baseErrorNotFound();
-
-            $modelName = $this->modelsNamespace.$method;
-
-            $get = Crud::get(new $modelName(), ["user_id"=>$request->user()->id]);
+        return $this->execute($method, function() use ($request) {
+            $get = Crud::get($this->model, ["user_id"=>$request->user()->id]);
 
             return $this->success($get);
-        } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
-        }
+        });
     }
 
     public function create(Request $request, string $method)
     {
-        try {
-            if (self::checkMethod($method)) return self::baseErrorNotFound();
-
-
-            $modelName = $this->modelsNamespace.$method;
-
-            $validator = Validator::make($request->all(), $modelName::getValidatorTemplate());
+        return $this->execute($method, function() use ($request) {
+            $validator = Validator::make($request->all(), $this->model::getValidatorTemplate());
 
             if ($validator->fails()) {
                 return self::validationError($validator->errors());
@@ -82,22 +82,16 @@ class EndpointsController extends Controller implements IEndpoints
             $data = $validator->validated();
             $data["user_id"] = $request->user()->id;
 
-            $created = Crud::add(new $modelName(), $data);
+            $created = Crud::add($this->model, $data);
 
             return $this->success(["id"=>$created]);
-        } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
-        }
+        });
     }
 
     public function update(Request $request, string $method, int $id)
     {
-        try {
-            if (self::checkMethod($method)) return self::baseErrorNotFound();
-
-            $modelName = $this->modelsNamespace.$method;
-
-            $validator = Validator::make($request->all(), $modelName::getValidatorTemplate());
+        return $this->execute($method, function() use ($request, $id) {
+            $validator = Validator::make($request->all(), $this->model::getValidatorTemplate());
 
             if ($validator->fails()) {
                 return self::validationError($validator->errors());
@@ -105,25 +99,17 @@ class EndpointsController extends Controller implements IEndpoints
 
             $dataUpdate = $validator->validated();
 
-            $update = Crud::update(new $modelName(), $dataUpdate, ["id"=>$id, "user_id"=>$request->user()->id]);
+            $update = Crud::update($this->model, $dataUpdate, ["id"=>$id, "user_id"=>$request->user()->id]);
             return $this->success(["id"=>$id, "updated"=>$update, "newFields"=>$dataUpdate]);
-        } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
-        }
+        });
     }
 
     public function delete(Request $request, string $method, int $id)
     {
-        try {
-            if (self::checkMethod($method)) return self::baseErrorNotFound();
-
-            $modelName = $this->modelsNamespace.$method;
-
-            $delete = Crud::delete(new $modelName(), ["id"=>$id, "user_id"=>$request->user()->id]);
+        return $this->execute($method, function () use ($request, $id) {
+            $delete = Crud::delete($this->model, ["id"=>$id, "user_id"=>$request->user()->id]);
             return $this->success(["id"=> $id, "deleted"=>$delete]);
-        } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
-        }
+        });
     }
 
 }

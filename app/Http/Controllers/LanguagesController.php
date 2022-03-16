@@ -25,6 +25,8 @@ class LanguagesController extends Controller
             ->join("language_levels", "language_levels.id", "=", "languages_users.language_level_id")
             ->get(["languages_users.id", "languages_users.user_id", "languages.name", "language_levels.CEFR", "language_levels.cambridge"]);
 
+
+
         return view("portal.languages", ["userLanguages"=>$userLanguages]);
     }
 
