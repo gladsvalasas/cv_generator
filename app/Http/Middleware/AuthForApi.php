@@ -18,11 +18,13 @@ class AuthForApi
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && !$request->hasCookie("_APIBEARER")) {
+        if ($request->user() && !Cookie::has("_APIBEARER")) {
             $request->user()->tokens()->delete();
             $token = $request->user()->createToken("APITOKEN");
 
-            return $next($request)->cookie("_APIBEARER", $token->plainTextToken, 3265);
+            Cookie::queue("_APIBEARER", $token->plainTextToken, 3265, null, null, false, false);
+
+//            return $next($request)->cookie("_APIBEARER", $token->plainTextToken, 3265);
         }
 
         return $next($request);
