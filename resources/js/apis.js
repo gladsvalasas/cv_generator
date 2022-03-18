@@ -19,6 +19,11 @@ class Api {
     {
         return axios.delete(Api.endpoint+method+"/delete/"+id, Api.headersOption);
     }
+
+    static add(method, data)
+    {
+        return axios.post(Api.endpoint+method+"/create/", data, Api.headersOption);
+    }
 }
 
 export default Api;
