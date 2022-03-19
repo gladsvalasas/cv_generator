@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="columns">
-        @include("layouts.grid", ['class'=>"height-100-vh"])
+        @include("layouts.grid")
         <div class="column is-10 main-column">
             <div class="card margin-top-15">
                 <div class="content">

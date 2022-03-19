@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,15 +24,18 @@ Route::group(["prefix"=>"admin"], function (){
 });
 
 Route::group(["prefix"=>"portal"], function() {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::middleware(["auth", "auth.token"])->group(function (){
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/employment', [App\Http\Controllers\EmploymentController::class, 'index'])->name('employment');
-    Route::get('/education', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
-    Route::get('/skills', [App\Http\Controllers\SkillsController::class, 'index'])->name('skills');
-    Route::get('/languages', [App\Http\Controllers\LanguagesController::class, 'index'])->name('languages');
-    Route::get('/cv', [App\Http\Controllers\ResumeController::class, 'index'])->name('cv');
+        Route::get('/employment', [App\Http\Controllers\EmploymentController::class, 'index'])->name('employment');
+        Route::get('/education', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
+        Route::get('/skills', [App\Http\Controllers\SkillsController::class, 'index'])->name('skills');
+        Route::get('/languages', [App\Http\Controllers\LanguagesController::class, 'index'])->name('languages');
+        Route::get('/cv', [App\Http\Controllers\ResumeController::class, 'index'])->name('cv');
 
-    Route::get("/badgegenerator", [\App\Http\Controllers\Portal\BadgeGeneratorController::class, "index"])->name("badgegenerator")->middleware("company");
+        Route::get("/badgegenerator", [\App\Http\Controllers\Portal\BadgeGeneratorController::class, "index"])->name("badgegenerator")->middleware("company");
 
-    Route::post("/profile/edit", [\App\Http\Controllers\HomeController::class, "edit"])->name("profile.edit");
+        Route::post("/profile/edit", [\App\Http\Controllers\HomeController::class, "edit"])->name("profile.edit");
+    });
 });
+

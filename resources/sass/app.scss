@@ -1,9 +1,17 @@
 @import "utilites/margins.scss";
+@import "utilites/paddings.scss";
 @import "utilites/sizes.scss";
+@import "utilites/positions.scss";
+
+@import "~choices.js/src/styles/choices";
 
 @import 'left-menu.scss';
 @import 'home.scss';
 
 .main-column {
     padding-bottom: 30vh;
+}
+
+.columns:not(:last-child) {
+    margin-bottom: 0 !important;
 }
