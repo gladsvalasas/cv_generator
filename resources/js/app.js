@@ -1,13 +1,9 @@
-import Api from "./apis";
-
-const $ = require( "jquery" ) (window);
-
 require('./bootstrap');
 require('./bulma/modals');
 import Choices from "choices.js";
-
+/*import 'animate.css';*/
 import IMask from 'imask';
-import {toast} from "bulma-toast";
+
 var lozad = require('lozad')
 
 const observer = lozad(); // lazy loads elements with default selector as '.lozad'
@@ -16,6 +12,12 @@ observer.observe();
 try {
     [].forEach.call(document.querySelectorAll(".js-choice"), function(elem) {
         new Choices(elem);
+    });
+
+    [].forEach.call(document.querySelectorAll(".notification > button"), function(e){
+        e.addEventListener('click', function(e) {
+            document.querySelectorAll(".notification").forEach((e)=>e.remove())
+        })
     });
 
 

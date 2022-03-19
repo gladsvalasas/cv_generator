@@ -24,6 +24,11 @@ class Api {
     {
         return axios.post(Api.endpoint+method+"/create/", data, Api.headersOption);
     }
+
+    static get(method, id)
+    {
+        return axios.get(Api.endpoint+method+"/get/"+id, Api.headersOption);
+    }
 }
 
 export default Api;

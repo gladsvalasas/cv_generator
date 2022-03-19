@@ -20,7 +20,7 @@ class AuthForApi
     {
         if ($request->user() && !Cookie::has("_APIBEARER")) {
             $request->user()->tokens()->delete();
-            $token = $request->user()->createToken("APITOKEN");
+            $token = $request->user()->createToken("APITOKEN", ["main:user"]);
 
             Cookie::queue("_APIBEARER", $token->plainTextToken, 3265, null, null, false, false);
 

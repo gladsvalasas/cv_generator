@@ -11,3 +11,7 @@
 .main-column {
     padding-bottom: 30vh;
 }
+
+.columns:not(:last-child) {
+    margin-bottom: 0 !important;
+}

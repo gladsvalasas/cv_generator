@@ -30,7 +30,7 @@ class EndpointsController extends Controller implements IEndpoints
 
     protected static function validationError($data)
     {
-        return self::error("Validation Error!", 422, $data);
+        return self::error("Validation Error!", 200, $data);
     }
 
     protected static function checkMethod($method)

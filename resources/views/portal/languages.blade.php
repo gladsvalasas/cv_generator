@@ -16,7 +16,7 @@
                                             <strong class="lang_name" data-id="{{ $userLanguage->lang_id }}">{{ $userLanguage->name }}</strong>
                                             <span class="lang_level" data-id="{{ $userLanguage->level_id }}">{{ $userLanguage->CEFR }} ({{ $userLanguage->cambridge }})</span>
                                             <span class="right">
-                                                <button class="delete "></button>
+                                                {{--<button class="delete "></button>--}}
                                                 <button class="delete delete-lang" data-id="{{ $userLanguage->id }}"></button>
                                             </span>
                                         </div>
@@ -25,6 +25,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="columns">
                         <div class="column">
                             <div class="columns">
@@ -70,7 +71,7 @@
                 <strong class="lang_name" data-id=""></strong>
                 <span class="lang_level" data-id=""></span>
                 <span class="right">
-                    <button class="delete "></button>
+                    {{--<button class="delete "></button>--}}
                     <button class="delete delete-lang" data-id=""></button>
                 </span>
             </div>
