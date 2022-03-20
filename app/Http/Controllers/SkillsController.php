@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Constants;
+use App\Models\Skills;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillsController extends Controller
 {
@@ -14,6 +17,18 @@ class SkillsController extends Controller
 
     public function index()
     {
-        return view("portal.skills");
+        $skills = [];
+        $skillsList = Skills::where("user_id", Auth::id())
+            ->get();
+
+        foreach ($skillsList as $skill) {
+            $skills[] = [
+                "name"=>$skill->name,
+                "level"=>$skill->level,
+                "className"=>Constants::SKILLS_LEVEL_CLASSES[$skill->level-1]
+            ];
+        }
+
+        return view("portal.skills", ["skillsList"=>$skills]);
     }
 }
