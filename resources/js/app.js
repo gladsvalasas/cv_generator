@@ -23,6 +23,7 @@ try {
 
     require("./home");
     require("./languages");
+    require("./skills");
 
     require('./filer');
 

@@ -1,19 +1,13 @@
 import Api from "./apis";
 import {createToast} from "./bulma/toasts";
+import {addEvent, deleteEvent} from "./baseEvents";
 
 try {
     function deleteClickEvent(e) {
         let id = this.getAttribute("data-id");
-        Api.delete(method, id)
-            .then((e)=>{
-                if (e.data.status === "success") {
-                    document.querySelector("#language-panel-"+id).remove()
-                    createToast("Deleted")
-                }
-            })
-            .catch((e)=>{
-                createToast(e.message, "is-danger")
-            })
+        deleteEvent(method, id, (e)=>{
+            document.querySelector("#language-panel-"+id).remove()
+        })
     }
 
     var deleteButton =  document.querySelectorAll(".delete-lang");
@@ -37,43 +31,33 @@ try {
             languagesData.append("languages_id", languageId);
             languagesData.append("language_level_id", levelId);
 
-            Api.add(method, languagesData)
-                .then((e)=>{
-                    if (e.data.status === "error") {
-                        createToast(e.data.message, "is-danger")
-                        return false;
-                    }
+            addEvent(method, languagesData, (e)=>{
+                let newLangId = e.data.data.id.id;
+                let newLanguage = Api.get("Languages", languageId);
+                let newLevel = Api.get("LanguageLevel", levelId);
 
-                    let newLangId = e.data.data.id.id;
-                    let newLanguage = Api.get("Languages", languageId);
-                    let newLevel = Api.get("LanguageLevel", levelId);
+                Promise.all([newLanguage, newLevel])
+                    .then((e)=>{
+                        var template = document.querySelector('#blockTemplate').content.cloneNode(true);
+                        template.querySelector("#language-panel-").setAttribute("id", "language-panel-"+newLangId);
+                        let button = template.querySelector(".delete-lang");
 
-                    Promise.all([newLanguage, newLevel])
-                        .then((e)=>{
-                            var template = document.querySelector('#blockTemplate').content.cloneNode(true);
-                            template.querySelector("#language-panel-").setAttribute("id", "language-panel-"+newLangId);
-                            let button = template.querySelector(".delete-lang");
+                        button.setAttribute("data-id", newLangId);
+                        button.addEventListener("click", deleteClickEvent);
 
-                            button.setAttribute("data-id", newLangId);
-                            button.addEventListener("click", deleteClickEvent);
+                        let lang = template.querySelector(".lang_name");
+                        lang.setAttribute("data-id", e[0].data.data[0].id);
+                        lang.textContent = e[0].data.data[0].name;
 
-                            let lang = template.querySelector(".lang_name");
-                            lang.setAttribute("data-id", e[0].data.data[0].id);
-                            lang.textContent = e[0].data.data[0].name;
+                        let level = template.querySelector(".lang_level");
+                        level.setAttribute("data-id", e[1].data.data[0].id);
+                        level.textContent = e[1].data.data[0].CEFR+` (${e[1].data.data[0].cambridge})`;
 
-                            let level = template.querySelector(".lang_level");
-                            level.setAttribute("data-id", e[1].data.data[0].id);
-                            level.textContent = e[1].data.data[0].CEFR+` (${e[1].data.data[0].cambridge})`;
-
-                            document.querySelector("#languagesList").appendChild(template);
-                            addButton.disabled = false;
-                            createToast("Done");
-                        })
-                })
-                .catch((e)=>{
-                    let message = e.message;
-                    createToast(message, "is-danger")
-                })
+                        document.querySelector("#languagesList").appendChild(template);
+                        addButton.disabled = false;
+                        createToast("Done");
+                    })
+            })
         })
     }
 } catch (e) {}

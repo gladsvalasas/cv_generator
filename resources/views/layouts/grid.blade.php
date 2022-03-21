@@ -20,6 +20,12 @@
                 </a>
             </li>
             <li class="menu-item">
+                <a href="{{ route("links") }}" class="">
+                    <i class="fas fa-globe"></i>
+                    <span>{{ __("Social Links") }}</span>
+                </a>
+            </li>
+            <li class="menu-item">
                 <a href="{{ route("skills") }}" class="">
                     <i class="fas fa-brain"></i>
                     <span>{{ __("Skills") }}</span>
@@ -27,7 +33,7 @@
             </li>
             <li class="menu-item">
                 <a href="{{ route("languages") }}" class="">
-                    <i class="fas fa-globe"></i>
+                    <i class="fas fa-language"></i>
                     <span>{{ __("Languages") }}</span>
                 </a>
             </li>

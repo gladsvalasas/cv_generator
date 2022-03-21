@@ -27,6 +27,7 @@ class User extends Authenticatable
         'phone_number',
         'password',
         'company_id',
+        "permission_id",
         'photo_path',
     ];
 
