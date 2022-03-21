@@ -94,7 +94,7 @@ class EndpointsController extends Controller implements IEndpoints
             $validator = Validator::make($request->all(), $this->model::getValidatorTemplate());
 
             if ($validator->fails()) {
-                return self::validationError($validator->errors());
+                return self::validationError(/*$validator->errors()*/$request->all());
             }
 
             $dataUpdate = $validator->validated();

@@ -23,6 +23,7 @@ class SkillsController extends Controller
 
         foreach ($skillsList as $skill) {
             $skills[] = [
+                "id"=>$skill->id,
                 "name"=>$skill->name,
                 "level"=>$skill->level,
                 "className"=>Constants::SKILLS_LEVEL_CLASSES[$skill->level-1]
