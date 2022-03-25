@@ -29,7 +29,7 @@ Route::group(["prefix"=>"portal"], function() {
 
         Route::get('/employment', [App\Http\Controllers\EmploymentController::class, 'index'])->name('employment');
         Route::get('/education', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
-        Route::get('/links', [\App\Http\Controllers\Social::class, 'index'])->name('links');
+        Route::get('/links', [\App\Http\Controllers\SocialController::class, 'index'])->name('links');
         Route::get('/skills', [App\Http\Controllers\SkillsController::class, 'index'])->name('skills');
         Route::get('/languages', [App\Http\Controllers\LanguagesController::class, 'index'])->name('languages');
         Route::get('/cv', [App\Http\Controllers\ResumeController::class, 'index'])->name('cv');
