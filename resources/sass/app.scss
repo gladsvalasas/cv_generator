@@ -16,3 +16,12 @@
 .columns:not(:last-child) {
     margin-bottom: 0 !important;
 }
+
+.editButton {
+    font-size: 1.2em;
+    &:hover {
+        cursor: pointer;
+        font-size: 1.3em;
+        color: #303030;
+    }
+}

@@ -15,7 +15,7 @@
                                         <div class="columns">
                                             <div class="column">
                                                 <div class="filed">
-                                                    <label class="label-one">{{ __("Skill name") }}</label>
+{{--                                                    <label class="label-one">{{ __("Skill name") }}</label>--}}
                                                     <div class="control">
                                                         <input class="input" id="skillName-{{ $skill["id"] }}" type="text" disabled value="{{ $skill["name"] }}">
                                                     </div>
@@ -23,7 +23,7 @@
                                             </div>
                                             <div class="column">
                                                 <div class="field">
-                                                    <label class="label-one">{{ __("Skill level") }}</label>
+{{--                                                    <label class="label-one">{{ __("Skill level") }}</label>--}}
                                                 </div>
                                                 <div class="control">
                                                     <progress class="progress {{ $skill["className"] }}" value="{{ $skill["level"] }}" max="5" id="skillLevelDisplay-{{ $skill["id"] }}"></progress>
@@ -33,7 +33,7 @@
                                             <div class="column is-1 left">
                                                 <button class="delete deleteSkill" data-id="{{ $skill["id"] }}"></button>
                                                 <div>
-                                                    <span class="icon editSkill" id="editSkill-{{ $skill["id"] }}" data-edit="false" data-id="{{ $skill["id"] }}">
+                                                    <span class="icon editSkill editButton" id="editSkill-{{ $skill["id"] }}" data-edit="false" data-id="{{ $skill["id"] }}">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
                                                     {{--<span class="icon has-text-success updateSkill" id="updateSkill-{{ $skill["id"] }}" data-id="{{ $skill["id"] }}" style="display: none">
@@ -83,7 +83,7 @@
             <div class="columns">
                 <div class="column">
                     <div class="filed">
-                        <label class="label-one">{{ __("Skill name") }}</label>
+{{--                        <label class="label-one">{{ __("Skill name") }}</label>--}}
                         <div class="control">
                             <input class="input" id="skillName-ID" type="text" disabled value="#VALUE">
                         </div>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="column">
                     <div class="field">
-                        <label class="label-one">{{ __("Skill level") }}</label>
+{{--                        <label class="label-one">{{ __("Skill level") }}</label>--}}
                     </div>
                     <div class="control">
                         <progress class="progress " value="#LEVEL" max="5" id="skillLevelDisplay-ID"></progress>

@@ -24,6 +24,7 @@ try {
     require("./home");
     require("./languages");
     require("./skills");
+    require("./socialLinks");
 
     require('./filer');
 

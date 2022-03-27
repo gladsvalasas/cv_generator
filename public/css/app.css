@@ -453,21 +453,21 @@
   width: 200px;
 }
 
-.editSkill {
-  font-size: 1.2em;
-}
-.editSkill:hover {
-  cursor: pointer;
-  font-size: 1.3em;
-  color: #303030;
-}
-
 .main-column {
   padding-bottom: 30vh;
 }
 
 .columns:not(:last-child) {
   margin-bottom: 0 !important;
+}
+
+.editButton {
+  font-size: 1.2em;
+}
+.editButton:hover {
+  cursor: pointer;
+  font-size: 1.3em;
+  color: #303030;
 }
 root {
     --admin-bg-color: #ddd;
