@@ -10,11 +10,13 @@ class SocialLinks extends Model implements IVerificationModel
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public static function getValidatorTemplate()
     {
         return [
-            "name"=>["require", "string"],
-            "link"=>["require", "string"]
+            "name"=>["required", "string"],
+            "link"=>["required", "string"]
         ];
     }
 }

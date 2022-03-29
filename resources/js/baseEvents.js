@@ -3,7 +3,6 @@ import {createToast} from "./bulma/toasts";
 
 function catchResponse(e) {
     createToast(e.message, "is-danger")
-
 }
 
 function deleteEvent(method, id, callback) {

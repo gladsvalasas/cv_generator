@@ -33,8 +33,8 @@ Route::post('/tokens/create', function (Request $request) {
 });*/
 
 Route::group(["prefix"=>"invites"], function(){
-   Route::get("/checkInvite", [\App\Http\Controllers\CheckInviteController::class, "get"]);
-   Route::post("/addInvite", [\App\Http\Controllers\CheckInviteController::class, "add"]);
+   Route::get("/checkInvite", [\App\Http\Controllers\Api\CheckInviteController::class, "get"]);
+   Route::post("/addInvite", [\App\Http\Controllers\Api\CheckInviteController::class, "add"]);
 });
 
 

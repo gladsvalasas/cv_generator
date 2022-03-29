@@ -19,41 +19,6 @@ class CreateLanguageLevelsTable extends Migration
             $table->string("cambridge")->nullable();
         });
 
-        DB::table('language_levels')
-            ->insert([
-                [
-                    "CEFR"=>"A1",
-                    "cambridge"=>"Beginner"
-                ],
-                [
-                    "CEFR"=>"A1+",
-                    "cambridge"=>"Elementary"
-                ],
-                [
-                    "CEFR"=>"A2",
-                    "cambridge"=>"Pre Intermediate"
-                ],
-                [
-                    "CEFR"=>"B1",
-                    "cambridge"=>"Intermediate"
-                ],
-                [
-                    "CEFR"=>"B2",
-                    "cambridge"=>"Upper Intermediate"
-                ],
-                [
-                    "CEFR"=>"C1",
-                    "cambridge"=>"Advanced"
-                ],
-                [
-                    "CEFR"=>"C2",
-                    "cambridge"=>"Proficiency"
-                ],
-                [
-                    "CEFR"=>"",
-                    "cambridge"=>"Native Speaker"
-                ]
-            ]);
     }
 
     /**

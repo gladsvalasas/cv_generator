@@ -20,11 +20,6 @@ class Companies extends Migration
             $table->integer("isHidden")->default(0);
         });
 
-        \Illuminate\Support\Facades\DB::table("companies")
-            ->insert([
-                "fullname"=>"Medialine",
-                "logo_path"=>"logo_WY95Y8vO.png"
-            ]);
     }
 
     /**

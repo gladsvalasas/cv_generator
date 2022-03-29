@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Portal;
+
+use App\Http\Controllers\Controller;
 
 use App\Classes\Constants;
 use App\Models\Skills;

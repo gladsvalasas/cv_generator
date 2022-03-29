@@ -26,12 +26,12 @@ Route::group(["prefix"=>"admin"], function (){
 Route::group(["prefix"=>"portal", "middleware" => ["auth", "auth.token"]], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/employment', [App\Http\Controllers\EmploymentController::class, 'index'])->name('employment');
-    Route::get('/education', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
-    Route::get('/links', [\App\Http\Controllers\SocialController::class, 'index'])->name('links');
-    Route::get('/skills', [App\Http\Controllers\SkillsController::class, 'index'])->name('skills');
-    Route::get('/languages', [App\Http\Controllers\LanguagesController::class, 'index'])->name('languages');
-    Route::get('/cv', [App\Http\Controllers\ResumeController::class, 'index'])->name('cv');
+    Route::get('/employment', [App\Http\Controllers\Portal\EmploymentController::class, 'index'])->name('employment');
+    Route::get('/education', [App\Http\Controllers\Portal\EducationController::class, 'index'])->name('education');
+    Route::get('/links', [\App\Http\Controllers\Portal\SocialController::class, 'index'])->name('links');
+    Route::get('/skills', [App\Http\Controllers\Portal\SkillsController::class, 'index'])->name('skills');
+    Route::get('/languages', [App\Http\Controllers\Portal\LanguagesController::class, 'index'])->name('languages');
+    Route::get('/cv', [App\Http\Controllers\Portal\ResumeController::class, 'index'])->name('cv');
 
     Route::get("/badgegenerator", [\App\Http\Controllers\Portal\BadgeGeneratorController::class, "index"])->name("badgegenerator")->middleware("company");
 

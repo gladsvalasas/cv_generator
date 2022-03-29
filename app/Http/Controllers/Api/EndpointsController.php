@@ -15,7 +15,7 @@ class EndpointsController extends Controller implements IEndpoints
 {
     use ApiResponser;
 
-    protected string $modelsNamespace = '\App\Models\\';
+    protected string $modelsNamespace = '\\App\\Models\\';
 
     private $model;
 
@@ -48,7 +48,8 @@ class EndpointsController extends Controller implements IEndpoints
 
             return $function();
         } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
+//            return self::baseErrorNotFound();
+            return $this->error($ex->getMessage(), 405);
         }
     }
 

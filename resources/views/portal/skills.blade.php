@@ -101,7 +101,7 @@
                 <div class="column is-1 left">
                     <button class="delete deleteSkill" data-id="#ID"></button>
                     <div>
-                        <span class="icon editSkill" id="editSkill-ID" data-edit="false" data-id="#ID">
+                        <span class="icon editSkill editButton" id="editSkill-ID" data-edit="false" data-id="#ID">
                             <i class="fas fa-edit"></i>
                         </span>
                     </div>

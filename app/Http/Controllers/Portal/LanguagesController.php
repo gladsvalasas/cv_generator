@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Portal;
 
 use App\Classes\AbstractVerifyModel;
 use App\Classes\Crud;
+use App\Http\Controllers\Controller;
 use App\Models\LanguageLevel;
 use App\Models\Languages;
 use App\Models\LanguagesUser;
