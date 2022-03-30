@@ -1,4 +1,4 @@
-import {strToBool} from "./functions";
+import {strToBool} from "../functions";
 
 const editButton = document.querySelector("#openEdit");
 

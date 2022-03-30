@@ -65,6 +65,7 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
+    {{-- тут всё так и должно работать! --}}
     <template id="blockTemplate">
         <div class="card margin-top-5 margin-bottom-5 padding-20 has-background-white-ter" id="language-panel-">
             <div class="content">

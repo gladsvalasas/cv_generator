@@ -12,6 +12,12 @@ class SocialLinks extends Model implements IVerificationModel
 
     public $timestamps = false;
 
+    public $fillable = [
+        "name",
+        "link",
+        "user_id"
+    ];
+
     public static function getValidatorTemplate()
     {
         return [

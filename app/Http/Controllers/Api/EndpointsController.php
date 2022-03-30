@@ -56,7 +56,7 @@ class EndpointsController extends Controller implements IEndpoints
     public function get(Request $request, string $method, int $id)
     {
         return $this->execute($method, function() use ($id) {
-            $get = Crud::get($this->model, ["id"=>$id]);
+            $get = Crud::getById($this->model, $id);
 
             return $this->success($get);
         });
@@ -85,7 +85,7 @@ class EndpointsController extends Controller implements IEndpoints
 
             $created = Crud::add($this->model, $data);
 
-            return $this->success(["id"=>$created]);
+            return $this->success($created);
         });
     }
 

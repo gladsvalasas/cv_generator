@@ -1,9 +1,42 @@
-import {addEvent, deleteEvent, updateEvent} from "./baseEvents";
-import {resetAttribute, SKILLS_LEVEL_CLASSES, strToBool} from "./functions";
-import {createToast} from "./bulma/toasts";
+import {addEvent, allEvent, deleteEvent, updateEvent} from "../baseEvents";
+import {resetAttribute, SKILLS_LEVEL_CLASSES, strToBool} from "../functions";
+import {createToast} from "../bulma/toasts";
+import Preloader from "../components/preloader";
 
 try {
-    var method = "SocialLinks";
+    const method = "SocialLinks";
+    var preloader = new Preloader();
+
+    function startup(data) {
+        var template = document.querySelector('#linkTemplate').content.cloneNode(true);
+        template.querySelector("#link-element-ID").setAttribute("id", "link-element-"+data.id);
+
+        let nameElem = template.querySelector("#linkName-ID");
+        nameElem.setAttribute("id", "linkName-"+data.id);
+        nameElem.value = data.name;
+
+        let linkValue = template.querySelector("#linkLink-ID");
+        linkValue.setAttribute("id", "linkLink-"+data.id);
+        linkValue.value = data.link;
+
+        let deleteButton = template.querySelector(".deleteLink");
+        deleteButton.setAttribute("data-id", data.id);
+
+        let editButton = template.querySelector("#editLink-ID");
+        editButton.setAttribute("id", "editLink-"+data.id);
+        editButton.setAttribute("data-id", data.id);
+
+        let updateButton = template.querySelector("#updateLink-ID");
+        updateButton.setAttribute("id", "updateLink-"+data.id);
+        updateButton.setAttribute("data-id", data.id);
+
+        deleteButton.addEventListener("click", deleteClickEvent);
+        editButton.addEventListener("click", editClickEvent);
+        updateButton.addEventListener("click", updateClickEvent);
+
+        document.querySelector("#socialLinksList").appendChild(template);
+    }
+
 
     function resetBlockDefault(id) {
         resetAttribute(document.querySelector("#editLink-"+id), "data-edit", "false");
@@ -50,7 +83,18 @@ try {
         resetAttribute(this, "data-edit", !isEdit)
     }
 
+    window.onload = (e) => {
+        allEvent(method, (e)=>{
+            e.data.data.forEach((link)=>{
+                startup(link);
+            })
+            preloader.dispatch();
+        })
+    }
+
     window.addEventListener("DOMContentLoaded",() => {
+
+        preloader.render("#socialLinksList");
 
         [].forEach.call(document.querySelectorAll(".deleteLink"), (elem)=>{
             elem.addEventListener("click", deleteClickEvent);
@@ -68,10 +112,23 @@ try {
 
         if (addLink !== null) {
             addLink.addEventListener("click", (e)=>{
+                let name = document.querySelector("#addLinkName");
+                let link = document.querySelector("#addLinkLink");
 
+                let linksData = new FormData();
+                linksData.append("name", name.value);
+                linksData.append("link", link.value);
+
+                addEvent(method, linksData, (e)=>{
+                    startup(e.data.data);
+
+                    name.value = link.value = "";
+
+                    createToast("Done!");
+                })
             })
         }
 
     });
 
-} catch (e) {}
+} catch (e) {console.log(e)}

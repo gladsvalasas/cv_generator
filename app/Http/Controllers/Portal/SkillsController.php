@@ -19,19 +19,6 @@ class SkillsController extends Controller
 
     public function index()
     {
-        $skills = [];
-        $skillsList = Skills::where("user_id", Auth::id())
-            ->get();
-
-        foreach ($skillsList as $skill) {
-            $skills[] = [
-                "id"=>$skill->id,
-                "name"=>$skill->name,
-                "level"=>$skill->level,
-                "className"=>Constants::SKILLS_LEVEL_CLASSES[$skill->level-1]
-            ];
-        }
-
-        return view("portal.skills", ["skillsList"=>$skills]);
+        return view("portal.skills");
     }
 }

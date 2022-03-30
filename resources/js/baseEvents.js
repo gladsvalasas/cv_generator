@@ -1,6 +1,9 @@
 import Api from "./apis";
 import {createToast} from "./bulma/toasts";
 
+const goodStatus = "success";
+const badStatus = "error";
+
 function catchResponse(e) {
     createToast(e.message, "is-danger")
 }
@@ -8,9 +11,21 @@ function catchResponse(e) {
 function deleteEvent(method, id, callback) {
     Api.delete(method, id)
         .then((e)=>{
-            if (e.data.status === "success") {
+            if (e.data.status === goodStatus) {
                 callback(e);
                 createToast("Deleted")
+            }
+        })
+        .catch((e)=>{
+            catchResponse(e);
+        })
+}
+
+function allEvent(method, callback) {
+    Api.all(method)
+        .then((e)=>{
+            if (e.data.status === goodStatus ) {
+                callback(e);
             }
         })
         .catch((e)=>{
@@ -21,7 +36,7 @@ function deleteEvent(method, id, callback) {
 function addEvent(method, data, callback) {
     Api.add(method, data)
         .then((e)=>{
-            if (e.data.status === "error") {
+            if (e.data.status === badStatus) {
                 createToast(e.data.message, "is-danger")
                 return false;
             }
@@ -36,7 +51,7 @@ function addEvent(method, data, callback) {
 function updateEvent(method, data, id, callback) {
     Api.update(method, data, id)
         .then((e)=>{
-            if (e.data.status === "error") {
+            if (e.data.status === badStatus) {
                 createToast(e.data.message, "is-danger")
                 return false;
             }
@@ -48,4 +63,4 @@ function updateEvent(method, data, id, callback) {
         })
 }
 
-export {deleteEvent, addEvent, updateEvent};
+export {deleteEvent, addEvent, updateEvent, allEvent};

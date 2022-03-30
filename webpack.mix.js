@@ -18,6 +18,11 @@ mix.webpackConfig({
 })
 
 mix.js('resources/js/app.js', 'public/js')
+    .js("resources/js/portal/home.js", "public/js/portal/")
+    .js("resources/js/portal/languages.js", "public/js/portal/")
+    .js("resources/js/portal/links.js", "public/js/portal/")
+    .js("resources/js/portal/skills.js", "public/js/portal/")
+    .js("resources/js/admin/register.js", "public/js/admin/")
     // .sass('resources/sass/app.scss', 'public/css')
     //.css("resources/css/bulma.css", "public/css")
     .sass("resources/sass/bulma/bulma.sass", "public/css/bulma.css")

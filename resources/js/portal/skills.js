@@ -1,9 +1,55 @@
-import {addEvent, deleteEvent, updateEvent} from "./baseEvents";
-import {resetAttribute, SKILLS_LEVEL_CLASSES, strToBool} from "./functions";
-import {createToast} from "./bulma/toasts";
+import {addEvent, allEvent, deleteEvent, updateEvent} from "../baseEvents";
+import {resetAttribute, SKILLS_LEVEL_CLASSES, strToBool} from "../functions";
+import {createToast} from "../bulma/toasts";
+import Preloader from "../components/preloader";
 
 try {
-    var method = "Skills";
+    const method = "Skills";
+    var preloader = new Preloader();
+
+
+    function startupCreate(data)
+    {
+        let newSkillId = data.id;
+        let newSkillName = data.name;
+        let newSkillLevel = data.level;
+
+        let classNameForLevel = SKILLS_LEVEL_CLASSES[newSkillLevel-1];
+
+        var template = document.querySelector('#blockTemplate').content.cloneNode(true);
+        template.querySelector("#skill-element-ID").setAttribute("id", "skill-element-"+newSkillId);
+
+        let nameInput = template.querySelector("#skillName-ID");
+        nameInput.setAttribute("id", "skillName-"+newSkillId);
+        nameInput.value = newSkillName;
+
+        let levelProgress = template.querySelector("#skillLevelDisplay-ID");
+        levelProgress.setAttribute("id", "skillLevelDisplay-"+newSkillId);
+        levelProgress.value = newSkillLevel;
+        levelProgress.className = "progress "+classNameForLevel;
+
+        let levelRange = template.querySelector("#skillLevel-ID");
+        levelRange.setAttribute("id", "skillLevel-"+newSkillId);
+        levelRange.value = newSkillLevel;
+
+        let deleteButton = template.querySelector(".deleteSkill");
+        deleteButton.setAttribute("data-id", newSkillId);
+
+        let editButton = template.querySelector("#editSkill-ID");
+        editButton.setAttribute("id", "editSkill-"+newSkillId);
+        editButton.setAttribute("data-id", newSkillId);
+
+        let updateButton = template.querySelector("#updateSkill-ID");
+        updateButton.setAttribute("id", "updateSkill-"+newSkillId);
+        updateButton.setAttribute("data-id", newSkillId);
+
+        deleteButton.addEventListener("click", deleteClickEvent);
+        editButton.addEventListener("click", editClickEvent);
+        updateButton.addEventListener("click", updateClickEvent);
+
+        document.querySelector("#skillsList").appendChild(template);
+
+    }
 
     function resetBlockDefault(id) {
         resetAttribute(document.querySelector("#editSkill-"+id), "data-edit", "false");
@@ -48,6 +94,7 @@ try {
     }
 
     function editClickEvent(e) {
+
         let id = this.getAttribute("data-id");
         let isEdit = strToBool(this.getAttribute("data-edit"));
         let buttonUpdate = document.querySelector("#updateSkill-"+id);
@@ -62,7 +109,19 @@ try {
         resetAttribute(this, "data-edit", !isEdit)
     }
 
+
+    window.onload = (e)=>{
+        allEvent(method, (e)=>{
+            e.data.data.forEach((skill)=>{
+                startupCreate(skill);
+            })
+            preloader.dispatch();
+        });
+    }
+
     window.addEventListener("DOMContentLoaded",() => {
+
+        preloader.render("#skillsList");
 
         [].forEach.call(document.querySelectorAll(".deleteSkill"), (elem)=>{
             elem.addEventListener("click", deleteClickEvent);
@@ -90,49 +149,10 @@ try {
                 addSkill.disabled = true;
 
                 addEvent(method, skillData, (e)=>{
-                    let newSkillId = e.data.data.id.id;
-                    let newSkillName = e.data.data.id.name;
-                    let newSkillLevel = e.data.data.id.level;
 
-                    let classNameForLevel = SKILLS_LEVEL_CLASSES[newSkillLevel-1];
-
-                    var template = document.querySelector('#blockTemplate').content.cloneNode(true);
-                    template.querySelector("#skill-element-ID").setAttribute("id", "skill-element-"+newSkillId);
-
-                    let nameInput = template.querySelector("#skillName-ID");
-                    nameInput.setAttribute("id", "skillName-"+newSkillId);
-                    nameInput.value = newSkillName;
-
-                    let levelProgress = template.querySelector("#skillLevelDisplay-ID");
-                    levelProgress.setAttribute("id", "skillLevelDisplay-"+newSkillId);
-                    levelProgress.value = newSkillLevel;
-                    levelProgress.className = "progress "+classNameForLevel;
-
-                    let levelRange = template.querySelector("#skillLevel-ID");
-                    levelRange.setAttribute("id", "skillLevel-"+newSkillId);
-                    levelRange.value = newSkillLevel;
-
-                    let deleteButton = template.querySelector(".deleteSkill");
-                    deleteButton.setAttribute("data-id", newSkillId);
-
-                    let editButton = template.querySelector("#editSkill-ID");
-                    editButton.setAttribute("id", "editSkill-"+newSkillId);
-                    editButton.setAttribute("data-id", newSkillId);
-
-                    let updateButton = template.querySelector("#updateSkill-ID");
-                    updateButton.setAttribute("id", "updateSkill-"+newSkillId);
-                    updateButton.setAttribute("data-id", newSkillId);
-
-                    deleteButton.addEventListener("click", deleteClickEvent);
-                    editButton.addEventListener("click", editClickEvent);
-                    updateButton.addEventListener("click", updateClickEvent);
-
-                    document.querySelector("#skillsList").appendChild(template);
-
+                    startupCreate(e.data.data);
                     skillName.value = "";
                     skillLevel.value = 1;
-
-
                     createToast("Done");
                 })
                 addSkill.disabled = false;
