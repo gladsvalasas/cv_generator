@@ -19,4 +19,6 @@ class Constants
         "is-warning",
         "is-primary"
     ];
+
+    const COOKIE_TOKEN_NAME = "_APIBEARER";
 }

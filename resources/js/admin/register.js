@@ -1,12 +1,3 @@
-const fileInput = document.querySelector('#avatar-upload input[type=file]');
-if (fileInput !== null) {
-    fileInput.onchange = () => {
-        if (fileInput.files.length > 0) {
-            const fileName = document.querySelector('#avatar-upload .file-name');
-            fileName.textContent = fileInput.files[0].name;
-        }
-    }
-}
 
 const codeTest = document.querySelector("#invite");
 const company_id = document.querySelector("#company");

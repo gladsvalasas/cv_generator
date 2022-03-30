@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Classes\Constants;
+use App\Classes\UsersUtilities;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -36,5 +40,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    function authenticated(Request $request, $user)
+    {
+        $token = $user->createToken(Constants::COOKIE_TOKEN_NAME, UsersUtilities::checkPrivilegesForToken($user));
+        Cookie::queue(Constants::COOKIE_TOKEN_NAME, $token->plainTextToken, 3265, null, null, false, false);
+    }
+
+    function loggedOut(Request $request)
+    {
+        Cookie::forget(Constants::COOKIE_TOKEN_NAME);
     }
 }

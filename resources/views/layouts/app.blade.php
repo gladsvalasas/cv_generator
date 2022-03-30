@@ -102,5 +102,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/'.Request::path().'.js') }}" defer></script>
 </body>
 </html>

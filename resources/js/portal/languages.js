@@ -1,6 +1,6 @@
-import Api from "./apis";
-import {createToast} from "./bulma/toasts";
-import {addEvent, deleteEvent} from "./baseEvents";
+import Api from "../apis";
+import {createToast} from "../bulma/toasts";
+import {addEvent, deleteEvent} from "../baseEvents";
 
 try {
     function deleteClickEvent(e) {
@@ -12,7 +12,7 @@ try {
 
     var deleteButton =  document.querySelectorAll(".delete-lang");
 
-    var method = "LanguagesUser";
+    const method = "LanguagesUser";
 
     [].forEach.call(deleteButton, function(elem) {
         elem.addEventListener('click', deleteClickEvent, false);
@@ -31,8 +31,9 @@ try {
             languagesData.append("languages_id", languageId);
             languagesData.append("language_level_id", levelId);
 
+            /*ПРИМЕР КАК ДЕЛАТЬ НЕ НАДО!*/
             addEvent(method, languagesData, (e)=>{
-                let newLangId = e.data.data.id.id;
+                let newLangId = e.data.data.id;
                 let newLanguage = Api.get("Languages", languageId);
                 let newLevel = Api.get("LanguageLevel", levelId);
 
@@ -46,12 +47,12 @@ try {
                         button.addEventListener("click", deleteClickEvent);
 
                         let lang = template.querySelector(".lang_name");
-                        lang.setAttribute("data-id", e[0].data.data[0].id);
-                        lang.textContent = e[0].data.data[0].name;
+                        lang.setAttribute("data-id", e[0].data.data.id);
+                        lang.textContent = e[0].data.data.name;
 
                         let level = template.querySelector(".lang_level");
-                        level.setAttribute("data-id", e[1].data.data[0].id);
-                        level.textContent = e[1].data.data[0].CEFR+` (${e[1].data.data[0].cambridge})`;
+                        level.setAttribute("data-id", e[1].data.data.id);
+                        level.textContent = e[1].data.data.CEFR+` (${e[1].data.data.cambridge})`;
 
                         document.querySelector("#languagesList").appendChild(template);
                         addButton.disabled = false;

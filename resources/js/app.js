@@ -20,19 +20,47 @@ try {
         })
     });
 
-
-    require("./home");
-    require("./languages");
-    require("./skills");
-
-    require('./filer');
-
     var number = document.getElementById("phone_number")
     if (number !== null) {
         var mask = IMask(document.getElementById("phone_number"), {
             mask: '+375 (00) 000-00-00'
         });
     }
+
+    const fileInput = document.querySelector('#avatar-upload input[type=file]');
+    if (fileInput !== null) {
+        fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+                const fileName = document.querySelector('#avatar-upload .file-name');
+                fileName.textContent = fileInput.files[0].name;
+            }
+        }
+    }
+
+    /*window.GLOBAL_SCRIPTS = [
+        "/admin/register",
+        "/portal/home",
+        "/portal/languages",
+        "/portal/links",
+        "/portal/skills",
+    ];
+
+    require("./admin/register");
+    require("./portal/home");
+    require("./portal/languages");
+    require("./portal/links");
+    require("./portal/skills");*/
+
+
+/*    window.GLOBAL_SCRIPTS.forEach((script)=>{
+        import("."+script)
+            .then(module=>{
+
+            })
+            .catch(error=>{
+                console.error(error)
+            });
+    })*/
 
 } catch (e) {}
 

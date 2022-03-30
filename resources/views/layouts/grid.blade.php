@@ -22,7 +22,7 @@
             <li class="menu-item">
                 <a href="{{ route("links") }}" class="">
                     <i class="fas fa-globe"></i>
-                    <span>{{ __("SocialController Links") }}</span>
+                    <span>{{ __("Social Links") }}</span>
                 </a>
             </li>
             <li class="menu-item">

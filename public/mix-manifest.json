@@ -1,5 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/portal/home.js": "/js/portal/home.js",
+    "/js/portal/languages.js": "/js/portal/languages.js",
+    "/js/portal/links.js": "/js/portal/links.js",
+    "/js/portal/skills.js": "/js/portal/skills.js",
+    "/js/admin/register.js": "/js/admin/register.js",
     "/css/app.css": "/css/app.css",
     "/css/fonts.css": "/css/fonts.css",
     "/css/bulma.css": "/css/bulma.css"

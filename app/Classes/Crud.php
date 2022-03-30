@@ -50,7 +50,8 @@ class Crud
      * @param $data
      * @return mixed
      */
-    public static function add(Model $model, $data) {
+    public static function add(Model $model, $data)
+    {
         return $model::create($data);
     }
 
@@ -62,6 +63,11 @@ class Crud
         }
 
         return null;
+    }
+
+    public static function getById(Model $model, $id)
+    {
+        return $model::find($id);
     }
 
     public static function getAll(Model $model)

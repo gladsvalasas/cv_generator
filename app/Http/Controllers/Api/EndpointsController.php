@@ -15,7 +15,7 @@ class EndpointsController extends Controller implements IEndpoints
 {
     use ApiResponser;
 
-    protected string $modelsNamespace = '\App\Models\\';
+    protected string $modelsNamespace = '\\App\\Models\\';
 
     private $model;
 
@@ -48,14 +48,15 @@ class EndpointsController extends Controller implements IEndpoints
 
             return $function();
         } catch (\Throwable  $ex) {
-            return self::baseErrorNotFound();
+//            return self::baseErrorNotFound();
+            return $this->error($ex->getMessage(), 405);
         }
     }
 
     public function get(Request $request, string $method, int $id)
     {
         return $this->execute($method, function() use ($id) {
-            $get = Crud::get($this->model, ["id"=>$id]);
+            $get = Crud::getById($this->model, $id);
 
             return $this->success($get);
         });
@@ -84,7 +85,7 @@ class EndpointsController extends Controller implements IEndpoints
 
             $created = Crud::add($this->model, $data);
 
-            return $this->success(["id"=>$created]);
+            return $this->success($created);
         });
     }
 

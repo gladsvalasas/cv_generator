@@ -19,21 +19,7 @@ class UserPermissions extends Migration
             $table->integer("code")->nullable(false);
         });
 
-        DB::table("permissions")
-            ->insert([
-                [
-                    "name_permission" => "User",
-                    "code" => 001
-                ],
-                [
-                    "name_permission" => "Moderator",
-                    "code" => 101
-                ],
-                [
-                    "name_permission" => "Administrator",
-                    "code" => 301
-                ]
-            ]);
+
     }
 
     /**

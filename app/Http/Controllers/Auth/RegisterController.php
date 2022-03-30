@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Classes\Constants;
 use App\Http\Controllers\Controller;
 use App\Models\Companies;
+use App\Models\Invites;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Classes\FileUtilites;
 use App\Classes\ImageUtilites;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -116,9 +119,13 @@ class RegisterController extends Controller
 
         $user->update(["photo_path"=>$fileName]);
 
-        DB::table("invites")
-            ->where("code", "=", $data["invite"])
-            ->update(["isActive"=> 0]);
+        Invites::where("code", $data["invite"])
+            ->update([
+                "isActive"=>0
+            ]);
+
+        $token = $user->createToken(Constants::COOKIE_TOKEN_NAME, ["main:user"]);
+        Cookie::queue(Constants::COOKIE_TOKEN_NAME, $token->plainTextToken, 3265, null, null, false, false);
 
         return $user;
     }

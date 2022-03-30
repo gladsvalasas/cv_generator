@@ -28,6 +28,6 @@ class CreateSocailLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('socail_links');
+        Schema::dropIfExists('social_links');
     }
 }
