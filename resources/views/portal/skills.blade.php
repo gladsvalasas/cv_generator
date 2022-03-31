@@ -46,6 +46,7 @@
 
     <template id="blockTemplate">
         <div class="" id="skill-element-ID">
+            <hr>
             <div class="columns">
                 <div class="column">
                     <div class="filed">
@@ -64,13 +65,16 @@
                         <input class="slider is-fullwidth" step="1" min="1" max="5" value="#LEVEL" type="range" id="skillLevel-ID" disabled style="display: none">
                     </div>
                 </div>
-                <div class="column is-1 left">
-                    <button class="delete deleteSkill" data-id="#ID"></button>
-                    <div>
+                <div class="column is-1">
+                    <div class="right">
+                        <button class="delete deleteSkill" data-id="#ID"></button>
+                        <div>
                         <span class="icon editSkill editButton" id="editSkill-ID" data-edit="false" data-id="#ID">
                             <i class="fas fa-edit"></i>
                         </span>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <button class="button margin-bottom-20 is-dark updateSkill" disabled id="updateSkill-ID" data-id="#ID" style="display: none">{{ __("Save") }}</button>
