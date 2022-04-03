@@ -13,7 +13,7 @@ function formatDate(start, end) {
 }
 
 function resetFormData() {
-    document.querySelectorAll(".baseField").forEach((elem, i)=>{
+    document.querySelectorAll("input[type=text].baseField").forEach((elem, i)=>{
         elem.value = "";
     })
 }
@@ -34,17 +34,11 @@ function baseCardElement(data, deleteClickHandler) {
 
     return template;
 }
-
+/*TODO: HOTFIX TO OBJECT ANOTHER DATA*/
 function addBaseCardToDom(element, addTo, deleteClickEvent ) {
-    let dateStart = formatDate(element.start_at, element.ended);
 
-    let template = baseCardElement({
-        id: element.id,
-        mainText: element.name,
-        submainText: element.country+", "+element.city,
-        otherText: element.speciality,
-        date: dateStart
-    }, deleteClickEvent);
+
+    let template = baseCardElement(element, deleteClickEvent);
 
     document.querySelector(addTo).appendChild(template);
 }

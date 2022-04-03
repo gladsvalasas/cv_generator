@@ -7,6 +7,9 @@
                     <span>{{ __("Home") }}</span>
                 </a>
             </li>
+            <li class="menu-item divider">
+                CV
+            </li>
             <li class="menu-item">
                 <a href="{{ route("employment") }}" class="">
                     <i class="fas fa-briefcase"></i>
@@ -43,6 +46,17 @@
                     <span>{{ __("CV") }}</span>
                 </a>
             </li>
+            @if (Auth::user()->permission_id == \App\Classes\Constants::ADMIN_PRIVILEGE)
+                <li class="menu-item divider">
+                    Admin
+                </li>
+                <li class="menu-item">
+                    <a href="" class="">
+                        <i class="fas fa-id-badge"></i>
+                        <span>{{ __("Invite Codes") }}</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 
