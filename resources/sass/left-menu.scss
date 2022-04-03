@@ -10,6 +10,37 @@
     &:hover {
         //background-color: #272727;
     }
+    &.divider {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgb(219, 219, 219);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        &::before, &::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background-color: rgb(219, 219, 219);
+        }
+
+        &::before {
+            margin-right: 20px;
+        }
+
+        &::after {
+            margin-left: 20px;
+        }
+        /*padding-top: 0;
+        padding-bottom: 0;
+        height: 3px;
+        background-color: rgb(233, 233, 233);
+        margin-left: 20px;
+        border-radius: 15px;*/
+    }
 }
 .menu-item > a {
     color: rgb(233, 233, 233);

@@ -17,6 +17,18 @@ try {
         "city",
     ];
 
+    function getFormattedObject(response) {
+        let dateStart = formatDate(response.start_at, response.ended);
+
+        return {
+            id: response.id,
+            mainText: response.name,
+            submainText: response.country+", "+response.city,
+            otherText: response.speciality,
+            date: dateStart
+        }
+    }
+
     function deleteClickEvent(e) {
         let id = this.getAttribute("data-id");
         deleteEvent(method, id, (e)=>{
@@ -27,7 +39,7 @@ try {
     window.onload = (e) => {
         allEvent(method, (e)=>{
             e.data.data.forEach((element)=>{
-                addBaseCardToDom(element, "#universityList", deleteClickEvent)
+                addBaseCardToDom(getFormattedObject(element), "#universityList", deleteClickEvent)
             })
             preloader.dispatch();
         })
@@ -42,7 +54,7 @@ try {
                 let universityData = getFormData(fieldsNames);
 
                 addEvent(method, universityData, (response)=>{
-                    addBaseCardToDom(response.data.data, "#universityList", deleteClickEvent)
+                    addBaseCardToDom(getFormattedObject(response.data.data), "#universityList", deleteClickEvent)
 
                     resetFormData();
 

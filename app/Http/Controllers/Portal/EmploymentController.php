@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Countries;
 use Illuminate\Http\Request;
 
 class EmploymentController extends Controller
@@ -16,6 +17,6 @@ class EmploymentController extends Controller
 
     public function index()
     {
-        return view("portal.employment");
+        return view("portal.employment", ["countries"=>Countries::all()]);
     }
 }
