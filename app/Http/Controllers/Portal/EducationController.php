@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Countries;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -15,6 +16,7 @@ class EducationController extends Controller
 
     public function index()
     {
-        return view("portal.education");
+        $countries = Countries::all();
+        return view("portal.education", ["countries"=>$countries]);
     }
 }

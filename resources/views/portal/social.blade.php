@@ -44,6 +44,7 @@
     </div>
     <template id="linkTemplate">
         <div id="link-element-ID">
+            <hr>
             <div class="columns">
                 <div class="column">
                     <div class="filed">
@@ -60,12 +61,15 @@
                     </div>
                 </div>
                 <div class="column is-1">
-                    <button class="delete deleteLink" data-id="ID"></button>
-                    <div>
+                    <div class="right">
+                        <button class="delete deleteLink" data-id="ID"></button>
+                        <div>
                         <span class="icon editLink editButton" id="editLink-ID" data-edit="false" data-id="ID">
                             <i class="fas fa-edit"></i>
                         </span>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <button class="button margin-bottom-20 is-dark updateLink" disabled id="updateLink-ID" data-id="ID" style="display: none">{{ __("Save") }}</button>

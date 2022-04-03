@@ -10,18 +10,7 @@
                         <div class="column">
                             <h4>{{ __("Languages") }}</h4>
                             <div id="languagesList">
-                                @foreach($userLanguages as $userLanguage)
-                                    <div class="card margin-top-5 margin-bottom-5 padding-20 has-background-white-ter" id="language-panel-{{ $userLanguage->id }}">
-                                        <div class="content">
-                                            <strong class="lang_name" data-id="{{ $userLanguage->lang_id }}">{{ $userLanguage->name }}</strong>
-                                            <span class="lang_level" data-id="{{ $userLanguage->level_id }}">{{ $userLanguage->CEFR }} ({{ $userLanguage->cambridge }})</span>
-                                            <span class="right">
-                                                {{--<button class="delete "></button>--}}
-                                                <button class="delete delete-lang" data-id="{{ $userLanguage->id }}"></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -67,7 +56,8 @@
 
     {{-- тут всё так и должно работать! --}}
     <template id="blockTemplate">
-        <div class="card margin-top-5 margin-bottom-5 padding-20 has-background-white-ter" id="language-panel-">
+        <div class="" id="language-panel-">
+            <hr>
             <div class="content">
                 <strong class="lang_name" data-id=""></strong>
                 <span class="lang_level" data-id=""></span>
@@ -78,4 +68,20 @@
             </div>
         </div>
     </template>
+
+    <script>
+        window.langList = [
+        @foreach($userLanguages as $userLanguage)
+            {
+                id: {{ $userLanguage->id }},
+                langId: {{ $userLanguage->lang_id }},
+                langName: "{{ $userLanguage->name }}",
+                levelId: {{ $userLanguage->level_id }},
+                CEFR: "{{ $userLanguage->CEFR }}",
+                cambridge: "{{ $userLanguage->cambridge }}"
+            },
+        @endforeach
+        ];
+    </script>
+
 @endsection

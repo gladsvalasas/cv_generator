@@ -6,6 +6,11 @@ export default class Preloader {
             </span>
     `;
 
+     getLoaderCode()
+     {
+         return this.#loaderCode;
+     }
+
     #isLoad = false;
 
     render(append)
@@ -16,7 +21,7 @@ export default class Preloader {
             tmp.style.display = "flex"
             tmp.style.justifyContent = "center"
             tmp.style.padding = "15px"
-            tmp.innerHTML = this.#loaderCode
+            tmp.innerHTML = this.getLoaderCode()
 
             document.querySelector(append)
                 .appendChild(tmp)

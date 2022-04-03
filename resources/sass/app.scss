@@ -8,6 +8,7 @@
 @import 'left-menu.scss';
 @import 'home.scss';
 @import 'skills.scss';
+@import 'education.scss';
 
 .main-column {
     padding-bottom: 30vh;
@@ -23,5 +24,18 @@
         cursor: pointer;
         //font-size: 1.3em;
         color: #303030;
+    }
+}
+
+.delimiter-icon {
+    font-size: 0.5rem;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.select {
+    width: 100%;
+    & > select {
+        width: 100%;
     }
 }

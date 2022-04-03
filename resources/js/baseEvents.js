@@ -21,12 +21,15 @@ function deleteEvent(method, id, callback) {
         })
 }
 
-function allEvent(method, callback) {
+function allEvent(method, callback, sub = ()=>{}) {
     Api.all(method)
         .then((e)=>{
             if (e.data.status === goodStatus ) {
                 callback(e);
             }
+        })
+        .then((e)=>{
+            sub();
         })
         .catch((e)=>{
             catchResponse(e);

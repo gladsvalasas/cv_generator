@@ -468,6 +468,19 @@
   cursor: pointer;
   color: #303030;
 }
+
+.delimiter-icon {
+  font-size: 0.5rem;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+.select {
+  width: 100%;
+}
+.select > select {
+  width: 100%;
+}
 root {
     --admin-bg-color: #ddd;
 }
