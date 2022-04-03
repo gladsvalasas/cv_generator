@@ -15,15 +15,14 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="columns">
-                        <div class="column">
-                            <div class="columns">
-                                <div class="column"></div>
-                                <div class="column"></div>
-                            </div>
-                            <button class="button is-dark {{--js-modal-trigger--}}" data-target="modal-add-lang" id="addUniversity">{{ __("Add") }}</button>
-                        </div>
-                    </div>
+                    @include("portal.templates.baseAddForm", ["countries"=>$countries, "names"=>[
+                        "main"=>"Name of University/College",
+                        "subMain"=>"Speciality name",
+                        "dateStart"=>"Start date of training",
+                        "dateEnd"=>"End date of training",
+                        "country"=>"Country",
+                        "city"=>"City"
+                    ]])
                 </div>
             </div>
         </div>

@@ -1,11 +1,21 @@
 import Preloader from "../components/preloader";
-import {allEvent, deleteEvent} from "../baseEvents";
-import {baseCardElement} from "../templates/baseCard";
+import {addEvent, allEvent, deleteEvent} from "../baseEvents";
+import {addBaseCardToDom, baseCardElement, formatDate, getFormData, resetFormData} from "../templates/baseCard";
+import {createToast} from "../bulma/toasts";
 
 try {
     const method = "Educations";
 
     const preloader = new Preloader();
+
+    const fieldsNames = [
+        "name",
+        "speciality",
+        "start_at",
+        "ended",
+        "country",
+        "city",
+    ];
 
     function deleteClickEvent(e) {
         let id = this.getAttribute("data-id");
@@ -17,18 +27,7 @@ try {
     window.onload = (e) => {
         allEvent(method, (e)=>{
             e.data.data.forEach((element)=>{
-                let dateStart = (new Date(element.start_at).toLocaleDateString())
-                    + " - " + (element.ended !== null ? (new Date(element.ended).toLocaleDateString()) : "now");
-
-                let template = baseCardElement({
-                    id: element.id,
-                    mainText: element.name,
-                    submainText: element.country+", "+element.city,
-                    otherText: element.speciality,
-                    date: dateStart
-                }, deleteClickEvent);
-
-                document.querySelector("#universityList").appendChild(template);
+                addBaseCardToDom(element, "#universityList", deleteClickEvent)
             })
             preloader.dispatch();
         })
@@ -37,6 +36,20 @@ try {
     window.addEventListener("DOMContentLoaded", ()=>{
         preloader.render("#universityList");
 
+        let universityAdd = document.querySelector("#baseAdd");
+        if (universityAdd !== null) {
+            universityAdd.addEventListener("click", (e)=>{
+                let universityData = getFormData(fieldsNames);
+
+                addEvent(method, universityData, (response)=>{
+                    addBaseCardToDom(response.data.data, "#universityList", deleteClickEvent)
+
+                    resetFormData();
+
+                    createToast("Done")
+                })
+            })
+        }
     })
 
 } catch (e) {}

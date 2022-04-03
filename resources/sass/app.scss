@@ -32,3 +32,10 @@
     vertical-align: middle;
     margin-top: -2px;
 }
+
+.select {
+    width: 100%;
+    & > select {
+        width: 100%;
+    }
+}

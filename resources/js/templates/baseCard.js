@@ -1,4 +1,22 @@
+function getFormData(formDateFields) {
+    let baseFormData = new FormData();
+    document.querySelectorAll(".baseField").forEach((elem, i)=>{
+        baseFormData.append(formDateFields[i], elem.value);
+    })
 
+    return baseFormData;
+}
+
+function formatDate(start, end) {
+    return (new Date(start).toLocaleDateString())
+        + " - " + (end !== null ? (new Date(end).toLocaleDateString()) : "now");
+}
+
+function resetFormData() {
+    document.querySelectorAll(".baseField").forEach((elem, i)=>{
+        elem.value = "";
+    })
+}
 
 function baseCardElement(data, deleteClickHandler) {
     var template = document.querySelector('#baseCardTemplate').content.cloneNode(true);
@@ -17,4 +35,18 @@ function baseCardElement(data, deleteClickHandler) {
     return template;
 }
 
-export {baseCardElement};
+function addBaseCardToDom(element, addTo, deleteClickEvent ) {
+    let dateStart = formatDate(element.start_at, element.ended);
+
+    let template = baseCardElement({
+        id: element.id,
+        mainText: element.name,
+        submainText: element.country+", "+element.city,
+        otherText: element.speciality,
+        date: dateStart
+    }, deleteClickEvent);
+
+    document.querySelector(addTo).appendChild(template);
+}
+
+export {baseCardElement, formatDate, getFormData, addBaseCardToDom, resetFormData};
