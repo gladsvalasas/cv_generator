@@ -10,6 +10,7 @@ class Constants
     const USER_PRIVILEGE = 1;
     const MODER_PRIVILEGE = 2;
     const ADMIN_PRIVILEGE = 3;
+    const SUPERADMIN_PRIVILEGE = 4;
 
     /*Skills levels classes*/
     const SKILLS_LEVEL_CLASSES = [

@@ -46,7 +46,7 @@
                     <span>{{ __("CV") }}</span>
                 </a>
             </li>
-            @if (Auth::user()->permission_id == \App\Classes\Constants::ADMIN_PRIVILEGE)
+            {{--@if (Auth::user()->permission_id == \App\Classes\Constants::ADMIN_PRIVILEGE)
                 <li class="menu-item divider">
                     Admin
                 </li>
@@ -56,7 +56,7 @@
                         <span>{{ __("Invite Codes") }}</span>
                     </a>
                 </li>
-            @endif
+            @endif--}}
         </ul>
     </div>
 

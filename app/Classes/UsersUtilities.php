@@ -15,6 +15,11 @@ class UsersUtilities
             $privileges[] = "main:moder"; //refactor this pls
             $privileges[] = "main:admin";
         }
+        if ($user->permission_id === Constants::SUPERADMIN_PRIVILEGE) {
+            $privileges[] = "main:moder";
+            $privileges[] = "main:admin";
+            $privileges[] = "main:superadmin";
+        }
 
         return $privileges;
     }

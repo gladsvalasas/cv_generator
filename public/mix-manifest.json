@@ -7,7 +7,9 @@
     "/js/portal/education.js": "/js/portal/education.js",
     "/js/portal/employment.js": "/js/portal/employment.js",
     "/js/admin/register.js": "/js/admin/register.js",
-    "/css/app.css": "/css/app.css",
+    "/landing/js/app.js": "/landing/js/app.js",
     "/css/fonts.css": "/css/fonts.css",
-    "/css/bulma.css": "/css/bulma.css"
+    "/css/app.css": "/css/app.css",
+    "/css/bulma.css": "/css/bulma.css",
+    "/landing/css/app.css": "/landing/css/app.css"
 }

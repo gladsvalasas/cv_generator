@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\LandingController::class, "index"]);
 
 Route::group(["prefix"=>"admin"], function (){
     Auth::routes(["register"=>true]);
@@ -34,6 +32,7 @@ Route::group(["prefix"=>"portal", "middleware" => ["auth", "auth.token"]], funct
     Route::get('/cv', [App\Http\Controllers\Portal\ResumeController::class, 'index'])->name('cv');
 
     Route::get("/badgegenerator", [\App\Http\Controllers\Portal\BadgeGeneratorController::class, "index"])->name("badgegenerator")->middleware("company");
+    Route::get("/landing/settings", [\App\Http\Controllers\Portal\LandingAdminController::class, "index"])->name("landing.settings")->middleware("check.permission.super");
 
     Route::post("/profile/edit", [\App\Http\Controllers\HomeController::class, "edit"])->name("profile.edit");
 });
