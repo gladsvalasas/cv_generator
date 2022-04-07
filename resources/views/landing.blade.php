@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset("landing/css/app.css") }}">
 </head>
 <body>
-<div class="first-block">
+<div class="first-block scrollable-panel">
     <div class="first-block__text-wrapper">
         <div class="first-block__text ">
             <div class="text-shadow animate__animated animate__fadeInTopRight">SAKHAROV</div>
@@ -37,6 +37,16 @@
         <div class="first-block__image glitch4">
             <img src="{{ asset("images/face/SPRITE2-GREEN.png") }}"  class="image-main with-opacity" alt="">
         </div>
+    </div>
+</div>
+<div class="about-block scrollable-panel">
+    <div class="about-block__hello-text padding-top-3">
+        Hello. My name Kirill Sakharov, and I'm a PHP Back-End Developer. And this is my portfolio. Welcome!
+    </div>
+    <div class="about-block__main-text padding-top-3">
+        I am 21 years old, I was born in January 2001. Graduated from college in 2020. My experience in web development is more than 6 years.
+        My main technology stack is PHP (Laravel, Comet PHP), HTML + CSS (SCSS), JavaScript (Vue.js).
+        Plans to study Front-End frameworks (React.js + Redux, Angular) and become a Full-Stack developer.
     </div>
 </div>
 

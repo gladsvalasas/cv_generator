@@ -8,8 +8,8 @@
     "/js/portal/employment.js": "/js/portal/employment.js",
     "/js/admin/register.js": "/js/admin/register.js",
     "/landing/js/app.js": "/landing/js/app.js",
+    "/landing/css/app.css": "/landing/css/app.css",
     "/css/fonts.css": "/css/fonts.css",
     "/css/app.css": "/css/app.css",
-    "/css/bulma.css": "/css/bulma.css",
-    "/landing/css/app.css": "/landing/css/app.css"
+    "/css/bulma.css": "/css/bulma.css"
 }

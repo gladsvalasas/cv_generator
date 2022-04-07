@@ -1,0 +1,30 @@
+.about-block {
+    background-color: $about-background;
+    color: $about-text-main;
+    /*@extend %set-font;*/
+    font-family: 'Anonymous Pro', monospace;
+    padding: 0 3%;
+}
+
+.about-block__ {
+    &#{hello-text} {
+        font-weight: bold;
+        font-size: 2rem;
+        opacity: 0;
+        &:after{
+            content: "_";
+            color: #fff;
+            animation: blink 500ms linear infinite alternate;
+        }
+    }
+
+    &#{main-text} {
+        color: $about-text-sub;
+        font-size: 1.45rem;
+        opacity: 0;
+        &:after{
+            content: "_";
+            animation: blink 500ms linear infinite alternate;
+        }
+    }
+}
