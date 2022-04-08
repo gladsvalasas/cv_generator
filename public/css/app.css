@@ -482,6 +482,19 @@
   width: 200px;
 }
 
+#tabs-with-content .tabs:not(:last-child) {
+  margin-bottom: 0;
+}
+
+#tabs-with-content .tab-content {
+  padding: 1rem;
+  display: none;
+}
+
+#tabs-with-content .tab-content.is-active {
+  display: block;
+}
+
 .main-column {
   padding-bottom: 30vh;
 }

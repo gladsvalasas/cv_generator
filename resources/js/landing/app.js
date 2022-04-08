@@ -1,3 +1,4 @@
+window.axios = require("axios");
 var lozad = require('lozad');
 import gsap from 'gsap'
 import { ScrollTrigger, ScrollToPlugin } from 'gsap/all'
@@ -8,6 +9,49 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const observer = lozad();
 observer.observe();
 
+const sectionsCallback = [
+    (i, panel)=>{},
+    (i, panel) => {
+        let helloAboutText = panel.querySelector(".about-block__hello-text");
+        let mainAboutText = panel.querySelector(".about-block__main-text");
+        let technologyText = panel.querySelector(".stack-logotypes__text");
+        if (helloAboutText !== null) {
+            if (helloAboutText.style.opacity === 0 || helloAboutText.style.opacity === "") {
+                helloAboutText.style.opacity = 1;
+                setupTypewriter(helloAboutText).type();
+            }
+
+        }
+        if (mainAboutText !== null) {
+            if (mainAboutText.style.opacity === 0 || mainAboutText.style.opacity === "") {
+                mainAboutText.style.opacity = 1;
+                setupTypewriter(mainAboutText).type();
+            }
+        }
+
+        if (technologyText !== null) {
+            if (technologyText.style.opacity === 0 || technologyText.style.opacity === "") {
+                technologyText.style.opacity = 1;
+                setupTypewriter(technologyText).type();
+            }
+        }
+
+        let logoBlock = document.querySelector(".stack-logotypes");
+        if (logoBlock !== null) {
+            if (!logoBlock.classList.contains("animate__fadeInUpBig")) {
+                logoBlock.classList.add("animate__fadeInUpBig");
+                logoBlock.style.visibility = "visible";
+            }
+        }
+    },
+    (i, panel) => {
+
+    },
+    (i, panel) => {
+
+    }
+]
+
 let panels = gsap.utils.toArray(".scrollable-panel"),
     scrollTween;
 
@@ -16,22 +60,7 @@ function goToSection(i, panel) {
         scrollTo: {x: 0, y: i * innerHeight, autoKill: false},
         duration: 2,
         onComplete: () => {
-            let helloAboutText = panel.querySelector(".about-block__hello-text");
-            let mainAboutText = panel.querySelector(".about-block__main-text");
-            if (helloAboutText !== null) {
-                if (helloAboutText.style.opacity === 0 || helloAboutText.style.opacity === "") {
-                    helloAboutText.style.opacity = 1;
-                    setupTypewriter(helloAboutText).type();
-                }
-
-            }
-            if (mainAboutText !== null) {
-                if (mainAboutText.style.opacity === 0 || mainAboutText.style.opacity === "") {
-                    mainAboutText.style.opacity = 1;
-                    setupTypewriter(mainAboutText).type();
-                }
-
-            }
+            sectionsCallback[i](i, panel);
 
             scrollTween = null
         },

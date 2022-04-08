@@ -22,6 +22,13 @@ Route::group(['middleware' => 'auth:sanctum', "prefix" => "endpoint"], function(
 
 });
 
+Route::group(["middleware" => ["auth:sanctum"], "prefix" => "landing"], function (){
+    Route::post("/main/save", [\App\Http\Controllers\Api\LandingApiController::class, "saveMain"]);
+    Route::post("/stack/save", [\App\Http\Controllers\Api\LandingApiController::class, "saveStack"]);
+    Route::post("/portfolio/save", [\App\Http\Controllers\Api\LandingApiController::class, "savePortfolio"]);
+    Route::post("/links/save", [\App\Http\Controllers\Api\LandingApiController::class, "saveLinks"]);
+});
+
 Route::post('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken("APITOKEN");
 

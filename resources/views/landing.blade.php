@@ -44,12 +44,52 @@
         Hello. My name Kirill Sakharov, and I'm a PHP Back-End Developer. And this is my portfolio. Welcome!
     </div>
     <div class="about-block__main-text padding-top-3">
-        I am 21 years old, I was born in January 2001. Graduated from college in 2020. My experience in web development is more than 6 years.
+        I am 21 years old, I was born in January 2001 in Belarus, Gomel. Graduated from college in 2020. My experience in web development is more than 6 years.
         My main technology stack is PHP (Laravel, Comet PHP), HTML + CSS (SCSS), JavaScript (Vue.js).
         Plans to study Front-End frameworks (React.js + Redux, Angular) and become a Full-Stack developer.
     </div>
-</div>
 
+    <div class="stack-logotypes__wrapper">
+        <div class="stack-logotypes__text" data-css-content="MY TECHNOLOGY STACK:">MY TECHNOLOGY STACK:.</div>
+        <div class="stack-logotypes animate__animated">
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+            <div class="stack-logo">
+                <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="projects-block scrollable-panel" style="background-color: #1a1a1a">
+    <div class="projects-block__head-text">
+        Projects:.
+    </div>
+</div>
+<div class="links-block scrollable-panel" style="background-color: #dbdbdb">
+    <div class="links-block__head-text">
+        Contact:.
+    </div>
+</div>
 <script src="{{ asset("landing/js/app.js") }}"></script>
 </body>
 </html>

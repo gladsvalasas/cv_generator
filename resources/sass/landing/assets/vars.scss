@@ -9,6 +9,12 @@
     font-size: 10vw;
 }
 
+@mixin textTypingHover() {
+    content: "_";
+    animation: blink 500ms linear infinite alternate;
+}
+
 .padding-top-3 {
     padding-top: 3%;
 }
+
