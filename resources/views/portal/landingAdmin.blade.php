@@ -23,19 +23,19 @@
                                         <div class="field">
                                             <label class="label">Title</label>
                                             <div class="control">
-                                                <input class="input" id="mainTitle" type="text" placeholder="">
+                                                <input class="input" id="mainTitle" type="text" placeholder="" value="{{ $config["title"] ?? "" }}">
                                             </div>
                                         </div>
                                         <div class="field">
                                             <label class="label">Main text</label>
                                             <div class="control">
-                                                <textarea class="textarea" id="mainText" placeholder=""></textarea>
+                                                <textarea class="textarea" id="mainText" placeholder="">{{ $config["mainText"] ?? "" }}</textarea>
                                             </div>
                                         </div>
                                         <div class="field">
                                             <label class="label">Sub text</label>
                                             <div class="control">
-                                                <textarea class="textarea" id="mainSubText" placeholder=""></textarea>
+                                                <textarea class="textarea" id="mainSubText" placeholder="">{{ $config["subText"] ?? "" }}</textarea>
                                             </div>
                                         </div>
                                         <button class="button is-dark" id="mainSave">Save</button>
@@ -52,18 +52,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="stackList">
-                                                    <tr id="stackElement-1">
-                                                        <td>1</td>
-                                                        <td>
-                                                            <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" style="height: 50px; width: 50px" alt="">
-                                                        </td>
-                                                        <td>
-                                                            <a href="https://node.js">https://node.js</a>
-                                                        </td>
-                                                        <td>
-                                                            <button class="delete stackDelete" data-id="1"></button>
-                                                        </td>
-                                                    </tr>
+
 
                                                 </tbody>
                                             </table>
@@ -265,4 +254,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.FROM_DB_DATA = {
+            stackList: [
+                @foreach($stackElements as $elements)
+                {
+                    id: {{ $elements->id }},
+                    link: '{{ $elements->tech_link }}',
+                    logo_path: '{{ asset("storage/stack/".$elements->logotype_path) }}',
+                },
+                @endforeach
+            ]
+        };
+    </script>
 @endsection

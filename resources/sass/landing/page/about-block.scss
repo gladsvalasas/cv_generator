@@ -55,8 +55,8 @@
         display: flex;
         margin-bottom: 30px;
 
-        & > img {
-            width: 75%;
+        & > a > img {
+            width: 55%;
             margin: 0 auto;
             filter: grayscale(1);
             opacity: 0.6;
@@ -76,41 +76,4 @@
 .stack-logotypes__wrapper {
     position: absolute;
     bottom: 0;
-
-    & > .stack-logotypes__text {
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 30px;
-        color: $about-text-sub;
-        font-size: 1.45rem;
-        opacity: 0;
-
-        @media (max-width: 800px) {
-            font-size: 1.25rem;
-        }
-        @media (max-width: 600px) {
-            font-size: 1.05rem;
-        }
-
-        &:before, &:after {
-            content: attr(data-css-content);
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            overflow: hidden;
-            padding: 30px;
-            opacity: 0.8;
-        }
-        &:before {
-            //left: 3px;
-            text-shadow: -3px 0 red;
-            animation: glitch-before 2s linear 0s infinite alternate;
-        }
-        &:after {
-            //@include textTypingHover();
-            //left: -3px;
-            text-shadow: -3px 0 blue;
-            animation: glitch-after 2s linear 0s infinite alternate;
-        }
-    }
 }

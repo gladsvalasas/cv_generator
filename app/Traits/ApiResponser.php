@@ -40,4 +40,14 @@ trait ApiResponser
             'data' => $data
         ], $code);
     }
+
+    protected static function baseErrorNotFound()
+    {
+        return self::error("Method not allowed", 405);
+    }
+
+    protected static function validationError($data)
+    {
+        return self::error("Validation Error!", 200, $data);
+    }
 }

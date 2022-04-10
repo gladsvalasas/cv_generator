@@ -66,4 +66,45 @@ function updateEvent(method, data, id, callback) {
         })
 }
 
-export {deleteEvent, addEvent, updateEvent, allEvent};
+function saveWithFileEvent(endpoint, data, callback, progressElem) {
+    axios.post(endpoint, data, {
+        headers: {
+            'Authorization': 'Bearer ' + Api.bearerToken,
+            'Accept': "application/json",
+            'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progress) => {
+            progressElem.value = Math.floor(progress.loaded * 100 / progress.total);
+        }
+    })
+        .then((resp)=>{
+            if (resp.data.status === badStatus) {
+                createToast(resp.data.message, "is-danger");
+                return false;
+            }
+            progressElem.value = 0;
+            callback(resp);
+        })
+        .catch((e)=>{ catchResponse(e) })
+}
+
+function deleteFromCustomEndpoint(endpoint, id, callback) {
+    axios.delete(endpoint+"/"+id, {
+        headers: {
+            'Authorization': 'Bearer ' + Api.bearerToken,
+            'Accept': "application/json",
+            'Content-Type': 'multipart/application/x-www-form-urlencoded'
+        },
+    })
+        .then((resp)=>{
+            if (resp.data.status === badStatus) {
+                createToast(resp.data.message, "is-danger");
+                return false;
+            }
+
+            callback(resp);
+        })
+        .catch((e)=>catchResponse(e));
+}
+
+export {deleteEvent, addEvent, updateEvent, allEvent, saveWithFileEvent, deleteFromCustomEndpoint, goodStatus, badStatus};

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Classes\Constants;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,10 @@ class LandingAdminCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if ($request->user()->tokenCan(Constants::USER_API_PERMISSIONS[3])) {
+            return $next($request);
+        }
+
+        return response(["message"=>"You don't have permission"], 403);
     }
 }

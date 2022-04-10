@@ -9,12 +9,22 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const observer = lozad();
 observer.observe();
 
+function showHeaderGlitchText(panel) {
+    let technologyText = panel.querySelector(".glitch-header-text");
+
+    if (technologyText !== null) {
+        if (technologyText.style.opacity === 0 || technologyText.style.opacity === "") {
+            technologyText.style.opacity = 1;
+            setupTypewriter(technologyText).type();
+        }
+    }
+}
+
 const sectionsCallback = [
     (i, panel)=>{},
     (i, panel) => {
         let helloAboutText = panel.querySelector(".about-block__hello-text");
         let mainAboutText = panel.querySelector(".about-block__main-text");
-        let technologyText = panel.querySelector(".stack-logotypes__text");
         if (helloAboutText !== null) {
             if (helloAboutText.style.opacity === 0 || helloAboutText.style.opacity === "") {
                 helloAboutText.style.opacity = 1;
@@ -29,12 +39,7 @@ const sectionsCallback = [
             }
         }
 
-        if (technologyText !== null) {
-            if (technologyText.style.opacity === 0 || technologyText.style.opacity === "") {
-                technologyText.style.opacity = 1;
-                setupTypewriter(technologyText).type();
-            }
-        }
+        showHeaderGlitchText(panel);
 
         let logoBlock = document.querySelector(".stack-logotypes");
         if (logoBlock !== null) {
@@ -45,7 +50,7 @@ const sectionsCallback = [
         }
     },
     (i, panel) => {
-
+        showHeaderGlitchText(panel);
     },
     (i, panel) => {
 
