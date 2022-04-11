@@ -76,3 +76,37 @@
         animation-timing-function: linear;
     }
 }
+
+.buttons-animation {
+    &:hover,
+    &:focus {
+        animation-name: buttonhover;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+    }
+
+    &:after {
+        content: "";
+    }
+
+    &:before {
+        content: "";
+    }
+
+    &:hover:before {
+        display: block;
+        animation-name: buttonhoverbefore;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    &:hover:after {
+        animation-name: buttonhoverafter;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}

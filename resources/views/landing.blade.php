@@ -64,6 +64,33 @@
 <div class="projects-block scrollable-panel">
     <div class="projects-block__wrapper">
         <div class="glitch-header-text h1glitched projects-block__text" data-css-content="PROJECTS:">PROJECTS:.</div>
+        <div class="projects-block__list">
+            <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
+                <div class="project-element__text">
+                    HUI 12345
+                </div>
+            </div>
+            <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
+                <div class="project-element__text">
+                    HUI 12345
+                </div>
+            </div>
+            <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
+                <div class="project-element__text">
+                    HUI 12345
+                </div>
+            </div>
+            <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
+                <div class="project-element__text">
+                    HUI 12345
+                </div>
+            </div>
+            <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
+                <div class="project-element__text">
+                    HUI 12345
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

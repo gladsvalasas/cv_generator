@@ -7,11 +7,93 @@
         position: absolute;
         top: 0;
         margin-top: 30px;
+        width: 100%;
     }
+
+
+}
+
+.projects-block__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 95%;
 }
 
 .projects-block__text {
 
     font-size: 1.8rem;
     color: $about-text-main;
+}
+
+.project-element {
+    width: 30%;
+    height: 30vh;
+
+    margin: 5px 5px 35px;
+    //filter: grayscale(1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    cursor: pointer;
+    border-right: 3px solid $main-text;
+    //transition: background-color 0.3s linear;
+    clip-path: polygon(
+            -15px 0%,
+            calc(100% + 15px) 0%,
+            calc(100% + 15px) 100%,
+            20px 100%,
+            -15px calc(100% - 35px)
+    );
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 0 0;
+
+    background-color: $about-text-sub;
+    color: $about-background;
+
+    transition: 0.3s;
+
+    /*
+
+    */
+
+    @media (max-width: 800px) {
+        //font-size: 1.25rem;
+    }
+    @media (max-width: 600px) {
+        width: 340%;
+        height: 12vh;
+    }
+
+    &:hover {
+        filter: grayscale(0.3);
+        transform: scale(1.15);
+        /*background-position: unset;
+        background-position: center;*/
+
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &:after {
+
+        }
+    }
+
+    &:active {
+        filter: invert(1);
+    }
+
+    & > .project-element__text {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        background-color: rgba($about-text-sub, 0.6);
+
+        font-family: "Advent Pro", arial;
+        font-size: 2rem;
+        font-weight: 600;
+    }
 }
