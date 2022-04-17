@@ -39,4 +39,7 @@ class Constants
     ];
 
     const LANDING_BASE_CONFIG_PATH = "config.json";
+
+    const LANDING_MAX_COUNT_STACK = 10;
+    const LANDING_MAX_COUNT_PROJECTS = 5;
 }

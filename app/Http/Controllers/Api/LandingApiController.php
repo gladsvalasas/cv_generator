@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Classes\Constants;
 use App\Classes\ImageUtilites;
 use App\Http\Controllers\Controller;
+use App\Models\Landing\PortfolioProjects;
 use App\Models\Landing\TechStack;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Spatie\Valuestore\Valuestore;
 class LandingApiController extends Controller
 {
     use ApiResponser;
+
     //
 
     public function __construct()
@@ -26,7 +28,7 @@ class LandingApiController extends Controller
     private function savePicture($file, $saveTo)
     {
         $filePrefix = Str::random(15);
-        $fileName = $filePrefix."-".$file->getClientOriginalName();
+        $fileName = $filePrefix . "-" . $file->getClientOriginalName();
         $file->storeAs("public/$saveTo", $fileName, "");
 
         return $fileName;
@@ -36,19 +38,19 @@ class LandingApiController extends Controller
     private function savePictureAndResize($file, $saveTo, $h, $w)
     {
         $fileName = $this->savePicture($file, $saveTo);
-        ImageUtilites::resizeImage(Storage::path("public/$saveTo")."/".$fileName, $h, $w);
+        ImageUtilites::resizeImage(Storage::path("public/$saveTo") . "/" . $fileName, $h, $w);
 
         return $fileName;
     }
 
     function saveMain(Request $request)
     {
-        $storage = Valuestore::make(Storage::path("public/").Constants::LANDING_BASE_CONFIG_PATH);
+        $storage = Valuestore::make(Storage::path("public/") . Constants::LANDING_BASE_CONFIG_PATH);
 
         $validator = Validator::make($request->all(), [
-            "title"=>["required", "string"],
-            "mainText"=>["required", "string"],
-            "subText"=>["required", "string"],
+            "title" => ["required", "string"],
+            "mainText" => ["required", "string"],
+            "subText" => ["required", "string"],
         ]);
 
         if ($validator->fails()) return self::validationError($validator->errors());
@@ -64,7 +66,7 @@ class LandingApiController extends Controller
     {
         $countStack = TechStack::all()
             ->count();
-        if ($countStack >= 10) return $this->error("Maximum - 10 entries", 200);
+        if ($countStack >= Constants::LANDING_MAX_COUNT_STACK) return $this->error("Maximum - 10 entries", 200);
 
         $data = $request->all();
         $validation = Validator::make($data, TechStack::getValidatorTemplate());
@@ -76,13 +78,18 @@ class LandingApiController extends Controller
 
         $created = TechStack::create($data);
 
-        $created["logotype_path"] = asset("storage/stack")."/".$fileName;
+        $created["logotype_path"] = asset("storage/stack") . "/" . $fileName;
 
         return $this->success($created);
     }
 
     function savePortfolio(Request $request)
     {
+        $countProjects = PortfolioProjects::all()
+            ->count();
+
+        if ($countProjects >= Constants::LANDING_MAX_COUNT_PROJECTS) return $this->error("Maximum - 5 entries", 200);
+
 
     }
 
@@ -95,12 +102,12 @@ class LandingApiController extends Controller
     {
         $deleted = TechStack::whereId($id)
             ->delete();
-        return $this->success(["id"=>$id, "deleted"=>$deleted]);
+        return $this->success(["id" => $id, "deleted" => $deleted]);
     }
 
     function deletePortfolio(Request $request, $id)
     {
-
+        return $this->success(["id" => $id, "deleted" => PortfolioProjects::whereId($id)->delete()]);
     }
 
     function deleteLinks(Request $request, $id)
