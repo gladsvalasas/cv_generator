@@ -18,12 +18,20 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 95%;
+
+    & > a {
+        text-decoration: none;
+    }
 }
 
 .projects-block__text {
 
     font-size: 1.8rem;
     color: $about-text-main;
+}
+
+.description-text {
+    font-size: 1.3em;
 }
 
 .project-element {
@@ -95,5 +103,24 @@
         font-family: "Advent Pro", arial;
         font-size: 2rem;
         font-weight: 600;
+
+        &:after {
+            content: "";
+        }
+        &:before {
+            content: "";
+        }
+        &:hover {
+            &:after {
+                content: "Lorem ipsum bla bla";
+                font-size: 1.3em;
+            }
+
+            &:before {
+                content: "";
+                font-size: 1.3em;
+            }
+        }
+
     }
 }
