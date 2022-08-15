@@ -1,0 +1,58 @@
+.h1glitched {
+    animation-name: h1glitched;
+    animation-duration: $anim-duration * 1.4;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &:before {
+        animation-name: h1beforeglitched;
+        animation-duration: $anim-duration * 2;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
+
+.liglitched {
+    animation-name: liglitched;
+    animation-duration: $anim-duration;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.glitch-header-text {
+    font-weight: bold;
+    font-family: "Advent Pro", arial;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: $about-text-sub;
+    font-size: 1.45rem;
+    opacity: 0;
+
+    @media (max-width: 800px) {
+        font-size: 1.25rem;
+    }
+    @media (max-width: 600px) {
+        font-size: 1.05rem;
+    }
+
+    &:before, &:after {
+        content: attr(data-css-content);
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        overflow: hidden;
+        padding: 30px;
+        opacity: 0.8;
+    }
+    &:before {
+        //left: 3px;
+        text-shadow: -3px 0 red;
+        animation: glitch-before 2s linear 0s infinite alternate;
+    }
+    &:after {
+        //@include textTypingHover();
+        //left: -3px;
+        text-shadow: -3px 0 blue;
+        animation: glitch-after 2s linear 0s infinite alternate;
+    }
+}

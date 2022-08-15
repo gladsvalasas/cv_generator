@@ -27,15 +27,23 @@ try {
         });
     }
 
-    const fileInput = document.querySelector('#avatar-upload input[type=file]');
+    [].forEach.call(document.querySelectorAll('.file input[type=file]'), (element)=>{
+        element.onchange = () => {
+            if (element.files.length > 0) {
+                const fileName = element.parentElement.querySelector('.file .file-name');
+                fileName.textContent = element.files[0].name;
+            }
+        }
+    })
+    /*const fileInput = document.querySelector('.file input[type=file]');
     if (fileInput !== null) {
         fileInput.onchange = () => {
             if (fileInput.files.length > 0) {
-                const fileName = document.querySelector('#avatar-upload .file-name');
+                const fileName = document.querySelector('.file .file-name');
                 fileName.textContent = fileInput.files[0].name;
             }
         }
-    }
+    }*/
 
     /*window.GLOBAL_SCRIPTS = [
         "/admin/register",

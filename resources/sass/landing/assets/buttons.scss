@@ -1,0 +1,112 @@
+.button {
+    background-color: $about-background;
+    display: block;
+    border: none;
+    border-radius: 0%;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Advent Pro", arial;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 15px 35px;
+    margin: 10px 20px 10px 0px;
+    position: relative;
+    color: $about-text-main;
+    border-right: 3px solid $main-text;
+    clip-path: polygon(
+            -15px 0%,
+            calc(100% + 15px) 0%,
+            calc(100% + 15px) 100%,
+            20px 100%,
+            -15px calc(100% - 35px)
+    );
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+
+    &:hover,
+    &:focus {
+        animation-name: buttonhover;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        right: 25px;
+        padding: 2px 2px 0px 2px;
+        font-size: 0.6rem;
+        line-height: 0.6rem;
+        border-left: 2px solid $main-text;
+    }
+
+    &:before {
+        --outside: 4px;
+        content: "";
+        position: absolute;
+        display: none;
+        background-color: $about-background;
+        width: calc(100% + (var(--outside) * 2));
+        height: 12px;
+        top: 0px;
+        left: calc(0px - 1px - var(--outside));
+        border-left: 2px solid $main-text;
+        border-right: 2px solid $main-text;
+    }
+
+    &:hover:before {
+        display: block;
+        animation-name: buttonhoverbefore;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    &:hover:after {
+        animation-name: buttonhoverafter;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
+
+.buttons-animation {
+    &:hover,
+    &:focus {
+        animation-name: buttonhover;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+    }
+
+    &:after {
+        content: "";
+    }
+
+    &:before {
+        content: "";
+    }
+
+    &:hover:before {
+        display: block;
+        animation-name: buttonhoverbefore;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    &:hover:after {
+        animation-name: buttonhoverafter;
+        animation-duration: $anim-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}

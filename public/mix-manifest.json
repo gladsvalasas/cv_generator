@@ -6,8 +6,11 @@
     "/js/portal/skills.js": "/js/portal/skills.js",
     "/js/portal/education.js": "/js/portal/education.js",
     "/js/portal/employment.js": "/js/portal/employment.js",
+    "/js/portal/landing/settings.js": "/js/portal/landing/settings.js",
     "/js/admin/register.js": "/js/admin/register.js",
-    "/css/app.css": "/css/app.css",
+    "/landing/js/app.js": "/landing/js/app.js",
+    "/landing/css/app.css": "/landing/css/app.css",
     "/css/fonts.css": "/css/fonts.css",
+    "/css/app.css": "/css/app.css",
     "/css/bulma.css": "/css/bulma.css"
 }

@@ -1,0 +1,22 @@
+$anim-duration: 0.9s;
+
+%set-font {
+    font-family: 'Barlow', serif;
+}
+
+%set-font-main {
+    @extend %set-font;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 10vw;
+}
+
+@mixin textTypingHover() {
+    content: "_";
+    animation: blink 500ms linear infinite alternate;
+}
+
+.padding-top-3 {
+    padding-top: 3%;
+}
+

@@ -44,10 +44,15 @@
                     <a class="navbar-item">
                         Documentation
                     </a>
-                    @if(\App\Models\User::getUser(Auth::id())["company_id"] > 0)
+                    @if(Auth::user()->company_id > 0)
                     <a class="navbar-item" href="{{ route("badgegenerator") }}">
                         {{ __("Badge Generator") }}
                     </a>
+                    @endif
+                    @if(Auth::user()->permission_id == \App\Classes\Constants::SUPERADMIN_PRIVILEGE)
+                        <a class="navbar-item" href="{{ route("landing.settings") }}">
+                            {{ __("Landing Settings") }}
+                        </a>
                     @endif
                 </div>
                 @endif

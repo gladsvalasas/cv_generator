@@ -1,0 +1,48 @@
+/*.first-block {
+    position: sticky;
+    height: 100vh;
+}*/
+
+.first-block__text {
+    text-transform: uppercase;
+    & > * {
+        position: absolute;
+        z-index: 999;
+    }
+    .text-shadow {
+        color: $main-background;
+        width: 60vw;
+        right: 5vw;
+        top: 36vh;
+        @extend %set-font-main;
+        letter-spacing: 0.065em;
+        opacity: 0.35 !important;
+        fill-opacity: 0;
+        text-shadow: -1px 0 $main-text, 0 1px $main-text, 1px 0 $main-text, 0 -1px $main-text;
+        transition: 0.3s;
+    }
+
+    .text-main {
+        width: 55vw;
+        right: 5vw;
+        top: 43vh;
+        @extend %set-font-main;
+        color: $main-text;
+    }
+
+}
+
+.first-block__image {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+}
+
+.image-main {
+    width: 65%;
+    z-index: 10;
+}
+
+.with-opacity {
+    opacity: 0.15;
+}

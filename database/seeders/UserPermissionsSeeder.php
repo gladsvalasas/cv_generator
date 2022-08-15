@@ -27,6 +27,10 @@ class UserPermissionsSeeder extends Seeder
                 [
                     "name_permission" => "Administrator",
                     "code" => 301
+                ],
+                [
+                    "name_permission" => "Super Administrator",
+                    "code" => 999
                 ]
             ]);
     }

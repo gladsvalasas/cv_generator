@@ -23,15 +23,6 @@ class EndpointsController extends Controller implements IEndpoints
         "User",
     ];
 
-    protected static function baseErrorNotFound()
-    {
-        return self::error("Method not allowed", 405);
-    }
-
-    protected static function validationError($data)
-    {
-        return self::error("Validation Error!", 200, $data);
-    }
 
     protected static function checkMethod($method)
     {
