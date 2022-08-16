@@ -111,22 +111,23 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="portfolioList">
-                                                    <tr id="portfolioElement-1">
-                                                        <td>1</td>
+                                                @foreach($projectsElements as $elements)
+                                                    <tr id="portfolioElement-{{ $elements->id }}">
+                                                        <td>{{ $elements->id }}</td>
                                                         <td>
-                                                            <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" style="height: 50px; width: 50px" alt="">
+                                                            <img src="{{ asset("storage/portfolio") . "/" .$elements->preview_path }}" style="height: 50px; width: 50px" alt="">
                                                         </td>
                                                         <td>
-                                                            <a href="https://node.js">https://node.js</a>
+                                                            <a href="{{ $elements->link }}">{{ $elements->link }}</a>
                                                         </td>
                                                         <td>
-                                                            JHAJKDSHAJKHSUAHSYUIGAHUSHAUIGSYAUIHBSUIAHUSITYAUSHNAOUSHHIATSGYI
+                                                            {{ $elements->description }}
                                                         </td>
                                                         <td>
-                                                            <button class="delete portfolioDelete" data-id="1"></button>
+                                                            <button class="delete portfolioDelete" data-id="{{ $elements->id }}"></button>
                                                         </td>
                                                     </tr>
-
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -167,25 +168,12 @@
                                                 </span>
                                             </label>
                                         </div>
-                                        <progress class="progress is-primary is-small margin-top-10" id="stackUploadState" value="0" max="100"></progress>
+                                        <progress class="progress is-primary is-small margin-top-10" id="portfolioUploadState" value="0" max="100"></progress>
                                         <button class="button is-dark" id="portfolioSave">Save</button>
 
                                         <template id="portfolioTemplate">
-                                            <tr id="portfolioElement-1">
-                                                <td>1</td>
-                                                <td>
-                                                    <img src="https://seeklogo.com/images/N/nodejs-logo-D26404F360-seeklogo.com.png" style="height: 50px; width: 50px" alt="">
-                                                </td>
-                                                <td>
-                                                    <a href="https://node.js">https://node.js</a>
-                                                </td>
-                                                <td>
-                                                    JHAJKDSHAJKHSUAHSYUIGAHUSHAUIGSYAUIHBSUIAHUSITYAUSHNAOUSHHIATSGYI
-                                                </td>
-                                                <td>
-                                                    <button class="delete portfolioDelete" data-id="1"></button>
-                                                </td>
-                                            </tr>
+
+
                                         </template>
                                     </section>
                                     <section class="tab-content">
@@ -263,6 +251,17 @@
                     id: {{ $elements->id }},
                     link: '{{ $elements->tech_link }}',
                     logo_path: '{{ asset("storage/stack/".$elements->logotype_path) }}',
+                },
+                @endforeach
+            ],
+            projectsList: [
+                @foreach($projectsElements as $elements)
+                {
+                    id: {{ $elements->id }},
+                    name: '{{ $elements->name }}',
+                    link: '{{ $elements->link }}',
+                    description: '{{ $elements->description }}',
+                    preview_path: '{{ asset("storage/stack/".$elements->preview_path) }}',
                 },
                 @endforeach
             ]

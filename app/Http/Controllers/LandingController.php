@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Constants;
+use App\Models\Landing\PortfolioProjects;
 use App\Models\Landing\TechStack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,10 @@ class LandingController extends Controller
         $stack = TechStack::all()
             ->take(10);
 
-        return view("landing", ["settings"=>$mainSettings, "techStack"=>$stack]);
+        $projects = PortfolioProjects::all()
+            ->take(5);
+
+        return view("landing", ["settings"=>$mainSettings, "techStack"=>$stack, "projects"=>$projects]);
     }
 
 }

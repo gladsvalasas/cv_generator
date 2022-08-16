@@ -15,6 +15,15 @@ function deleteStack(e) {
     })
 }
 
+function deleteProject(e) {
+    let id = this.getAttribute("data-id");
+
+    deleteFromCustomEndpoint(getLandingApiEndpoint("portfolio", "delete"), id, (e)=>{
+        document.querySelector("#portfolioElement-"+e.data.data.id).remove();
+        createToast("Deleted")
+    })
+}
+
 function updateStackTemplate(data) {
     let template = document.querySelector('#stackTemplate').content.cloneNode(true);
     template.querySelector("#stackElement-1").setAttribute("id", "stackElement-"+data.id);
@@ -93,6 +102,44 @@ window.addEventListener("DOMContentLoaded", ()=>{
 
     });
 
+    let portfolioSave = document.querySelector("#portfolioSave");
+    portfolioSave.addEventListener("click", (e)=>{
+        let name = document.querySelector("#portfolioName").value;
+        let link = document.querySelector("#portfolioLink").value;
+        let description = document.querySelector("#portfolioDescription").value;
+        let logo = document.querySelector("#portfolioPreview").files[0];
+
+        let portfolioUploadState = document.querySelector("#portfolioUploadState");
+
+        portfolioUploadState.value = 0;
+
+        let stackData = new FormData();
+        stackData.append("name", name);
+        stackData.append("link", link);
+        stackData.append("description", description);
+        stackData.append("preview_path", logo);
+
+        saveWithFileEvent(getLandingApiEndpoint("portfolio", "save"), stackData, (e)=>{
+            document.querySelector("#portfolioList").innerHTML += `
+                <tr id="portfolioElement-${e.data.data.id}">
+                                                        <td>${e.data.data.id}</td>
+                                                        <td>
+                                                            <img src="${e.data.data.preview_path}" style="height: 50px; width: 50px" alt="">
+                                                        </td>
+                                                        <td>
+                                                            <a href="${e.data.data.link}">${e.data.data.link}</a>
+                                                        </td>
+                                                        <td>
+                                                            ${e.data.data.description}
+                                                        </td>
+                                                        <td>
+                                                            <button class="delete portfolioDelete" data-id="${e.data.data.id}"></button>
+                                                        </td>
+                                                    </tr>
+            `;
+            createToast("Done")
+        }, portfolioUploadState)
+    });
 
     (function () {
         let tabs = document.querySelectorAll('.tabs li');

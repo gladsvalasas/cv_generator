@@ -22,7 +22,7 @@ class PortfolioProjects extends Model implements IVerificationModel{
             "name" => ["required", "string"],
             "description" => ["nullable", "string"],
             "link" => ["nullable", "string"],
-            "preview_path" => ["required", "string"]
+            "preview_path" => ["required", "file", "image"]
         ];
     }
 }

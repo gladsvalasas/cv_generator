@@ -13,16 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'auth:sanctum', "prefix" => "endpoint"], function() {
-    Route::get("/{method}/get/{id}", [\App\Http\Controllers\Api\EndpointsController::class, "get"]);
-    Route::get("/{method}/all", [\App\Http\Controllers\Api\EndpointsController::class, "getAll"]);
-    Route::post("/{method}/create/", [\App\Http\Controllers\Api\EndpointsController::class, "create"]);
-    Route::post("/{method}/update/{id}", [\App\Http\Controllers\Api\EndpointsController::class, "update"]);
-    Route::delete("/{method}/delete/{id}",  [\App\Http\Controllers\Api\EndpointsController::class, "delete"]);
-
-});
-
-Route::group(["middleware" => ["auth:sanctum", "api.check.permission.super"], "prefix" => "landing"], function (){
+Route::group(["middleware" => ["auth:sanctum"], "prefix" => "landing"], function (){
     Route::post("/main/save", [\App\Http\Controllers\Api\LandingApiController::class, "saveMain"]);
     Route::post("/stack/save", [\App\Http\Controllers\Api\LandingApiController::class, "saveStack"]);
     Route::post("/portfolio/save", [\App\Http\Controllers\Api\LandingApiController::class, "savePortfolio"]);
@@ -31,21 +22,6 @@ Route::group(["middleware" => ["auth:sanctum", "api.check.permission.super"], "p
     Route::delete("/stack/delete/{id}", [\App\Http\Controllers\Api\LandingApiController::class, "deleteStack"]);
     Route::delete("/portfolio/delete/{id}", [\App\Http\Controllers\Api\LandingApiController::class, "deletePortfolio"]);
     Route::delete("/links/delete/{id}", [\App\Http\Controllers\Api\LandingApiController::class, "deleteLinks"]);
-});
-
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken("APITOKEN");
-
-    return ['token' => $token->plainTextToken];
-});
-
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
-
-Route::group(["prefix"=>"invites"], function(){
-   Route::get("/checkInvite", [\App\Http\Controllers\Api\CheckInviteController::class, "get"]);
-   Route::post("/addInvite", [\App\Http\Controllers\Api\CheckInviteController::class, "add"]);
 });
 
 

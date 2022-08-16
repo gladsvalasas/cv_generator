@@ -64,26 +64,42 @@
 <div class="projects-block scrollable-panel">
     <div class="projects-block__wrapper">
         <div class="glitch-header-text h1glitched projects-block__text" data-css-content="PROJECTS:">PROJECTS:.</div>
+
         <div class="projects-block__list">
-                <div class="project-element" style="background-image: url('https://info-comp.ru/wp-content/uploads/images/stories/kartinki/Make_Screenshot_in_Linux_7.jpg')">
-                    <div class="project-element__text head-text">
-                        HUI 12345
-                    </div>
-                    {{--<div class="project-element__text description-text">
-                        Lorem Inpsum dolore huere idi nahui glek ebuchi pidoras pidorasische
-                    </div>--}}
+         @foreach($projects as $project)
+
+            <a href="{{ $project->link }}" target="_blank" class="project-element" style="background-image: url('{{ asset("storage/portfolio"). "/" .$project->preview_path }}')">
+                <div class="project-element__text head-text">
+                    {{ $project->name }}
                 </div>
+                {{--<div class="project-element__text description-text">
+                    Lorem Inpsum dolore huere idi nahui glek ebuchi pidoras pidorasische
+                </div>--}}
+            </a>
+        @endforeach
         </div>
     </div>
 
 </div>
-<div class="links-block scrollable-panel" style="background-color: #dbdbdb">
-    <div class="links-block__head-text">
-        Contact:.
+<div class="links-block scrollable-panel">
+    <div class="links-block__wrapper">
+        <div class="glitch-header-text h1glitched projects-block__text" style="color: #0a0a0a" data-css-content="CONTACT:">CONTACT:.</div>
 
-        <a href="" class="button glitched-button">
-            PENISIS
-        </a>
+        <div class="block-buttons">
+            <a href="https://www.linkedin.com/in/kirill-sakharov-862072227/" target="_blank" class="button glitched-button">
+                <i class="fa-brands fa-linkedin"></i> LINKEDIN
+            </a>
+            <a href="https://github.com/m1n64" target="_blank" class="button glitched-button">
+                <i class="fa-brands fa-github"></i> GITHUB
+            </a>
+            <a href="mailto:mrcaxapov@gmail.com" target="_blank" class="button glitched-button">
+                <i class="fa-solid fa-envelope"></i> EMAIL
+            </a>
+            <a href="https://t.me/m1n64" target="_blank" class="button glitched-button">
+                <i class="fa-brands fa-telegram"></i> TELEGRAM
+            </a>
+        </div>
+
     </div>
 </div>
 <script src="{{ asset("landing/js/app.js") }}"></script>

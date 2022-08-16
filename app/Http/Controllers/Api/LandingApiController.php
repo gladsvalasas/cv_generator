@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Classes\Constants;
 use App\Classes\ImageUtilites;
 use App\Http\Controllers\Controller;
+use App\Models\Landing\PortfolioLinks;
 use App\Models\Landing\PortfolioProjects;
 use App\Models\Landing\TechStack;
 use App\Traits\ApiResponser;
@@ -90,12 +91,25 @@ class LandingApiController extends Controller
 
         if ($countProjects >= Constants::LANDING_MAX_COUNT_PROJECTS) return $this->error("Maximum - 5 entries", 200);
 
+        $data = $request->all();
+        $validation = Validator::make($data, PortfolioProjects::getValidatorTemplate());
+        if ($validation->fails()) return self::validationError($validation->errors());
 
+        $fileName = $this->savePicture($request->file("preview_path"), "portfolio");
+
+        $data["preview_path"] = $fileName;
+
+        $created = PortfolioProjects::create($data);
+
+        $created["preview_path"] = asset("storage/portfolio") . "/" . $fileName;
+
+        return $this->success($created);
     }
 
     function saveLinks(Request $request)
     {
-
+        $countLinks = PortfolioLinks::all()
+            ->count();
     }
 
     function deleteStack(Request $request, $id)

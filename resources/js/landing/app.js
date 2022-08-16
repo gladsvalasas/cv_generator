@@ -53,7 +53,7 @@ const sectionsCallback = [
         showHeaderGlitchText(panel);
     },
     (i, panel) => {
-
+        showHeaderGlitchText(panel);
     }
 ]
 

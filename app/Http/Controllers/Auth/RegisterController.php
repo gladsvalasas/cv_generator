@@ -75,13 +75,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'invite' => ['required', 'string', 'max:255'],
             'dateBirth' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             "phone_number"=>['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'photo_path'=>['required'],
-            "company"=>["required", "integer"]
         ]);
     }
 
@@ -101,8 +99,7 @@ class RegisterController extends Controller
             'birthday' => $data['dateBirth'],
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
-            'password' => Hash::make($data['password']),
-            "company_id" => $data["company"]
+            'password' => Hash::make($data['password'])
 
         ]);
         $fileTempPrefix = Str::random(15);
@@ -118,11 +115,6 @@ class RegisterController extends Controller
         ImageUtilites::createAvatars(["main"=>$mainPath, "sub"=>$subPath], $fileName);
 
         $user->update(["photo_path"=>$fileName]);
-
-        Invites::where("code", $data["invite"])
-            ->update([
-                "isActive"=>0
-            ]);
 
         $token = $user->createToken(Constants::COOKIE_TOKEN_NAME, ["main:user"]);
         Cookie::queue(Constants::COOKIE_TOKEN_NAME, $token->plainTextToken, 3265, null, null, false, false);

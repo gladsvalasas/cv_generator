@@ -85,15 +85,6 @@
                         <hr> {{--интересно, сейчас кто-то так ещё делает?--}}
                         <div class="columns">
                             <div class="column margin-left-20 margin-right-20">
-                                <h4>{{ __("Company") }}</h4>
-                                <div class="name_block">
-                                    <div class="logo_company">
-                                        <img class="lozad" data-src="{{ asset("storage/companies/".$userInfo["company"]["id"]."/".$userInfo["company"]["logo_path"]) }}" alt="">
-                                    </div>
-                                    <div class="name_company">
-                                        {{ $userInfo["company"]["fullname"] }}
-                                    </div>
-                                </div>
                                 <div class="position_block">
                                     <div class="field">
                                         <label class="label">{{ __("Position") }}</label>

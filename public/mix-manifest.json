@@ -1,11 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/portal/home.js": "/js/portal/home.js",
-    "/js/portal/languages.js": "/js/portal/languages.js",
-    "/js/portal/links.js": "/js/portal/links.js",
-    "/js/portal/skills.js": "/js/portal/skills.js",
-    "/js/portal/education.js": "/js/portal/education.js",
-    "/js/portal/employment.js": "/js/portal/employment.js",
     "/js/portal/landing/settings.js": "/js/portal/landing/settings.js",
     "/js/admin/register.js": "/js/admin/register.js",
     "/landing/js/app.js": "/landing/js/app.js",

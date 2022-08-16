@@ -9,41 +9,6 @@
                 @csrf
 
                 <div class="field">
-                    <label class="company">{{ __("Company") }}</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="company" id="company">
-                                {{--<option value="0">{{ __("No company") }}</option>--}}
-                                @foreach($companies as $company)
-                                    <option value="{{ $company->id }}">{{ $company->fullname }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    @error('company')
-                    <span class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-
-                <div class="field">
-                    <label class="invite">{{ __('Invite code') }}</label>
-                    <div class="control">
-                        <input id="invite" type="text" class="input @error('invite') is-danger @enderror" name="invite"
-                               value="{{ old('invite') ?? $invite }}" required autocomplete="invite" autofocus>
-                    </div>
-                    <span class="help is-danger" role="alert" id="company_message">
-                        <strong></strong>
-                    </span>
-                    @error('invite')
-                    <span class="help is-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-
-                <div class="field">
                     <label class="name">{{ __('Name') }}</label>
                     <div class="control">
                         <input id="name" type="text" class="input @error('name') is-danger @enderror" name="name"
@@ -178,7 +143,7 @@
                 </div>
 
 
-                <button id="registerButton" disabled type="submit" class="button is-dark">
+                <button id="registerButton" type="submit" class="button is-dark">
                     {{ __('Register') }}
                 </button>
 

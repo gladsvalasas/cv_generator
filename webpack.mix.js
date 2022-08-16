@@ -19,11 +19,6 @@ mix.webpackConfig({
 
 mix.js('resources/js/app.js', 'public/js')
     .js("resources/js/portal/home.js", "public/js/portal/")
-    .js("resources/js/portal/languages.js", "public/js/portal/")
-    .js("resources/js/portal/links.js", "public/js/portal/")
-    .js("resources/js/portal/skills.js", "public/js/portal/")
-    .js("resources/js/portal/education.js", "public/js/portal/")
-    .js("resources/js/portal/employment.js", "public/js/portal/")
     .js("resources/js/portal/landing/settings.js", "public/js/portal/landing/")
     .js("resources/js/admin/register.js", "public/js/admin/")
     .js("resources/js/landing/app.js", "public/landing/js/")

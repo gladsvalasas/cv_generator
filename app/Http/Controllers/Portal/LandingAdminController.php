@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Classes\Constants;
 use App\Http\Controllers\Controller;
+use App\Models\Landing\PortfolioProjects;
 use App\Models\Landing\TechStack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,9 @@ class LandingAdminController extends Controller
         $stackElements = TechStack::all()
             ->take(10);
 
-        return view("portal.landingAdmin", ["config"=>$config,"stackElements"=>$stackElements]);
+        $projectsElements = PortfolioProjects::all()->take(5);
+
+        return view("portal.landingAdmin", ["config"=>$config,"stackElements"=>$stackElements, "projectsElements"=>$projectsElements]);
     }
 
 }
